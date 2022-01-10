@@ -11,15 +11,16 @@ class DummyCSVResource(csv_resource.CSVResource):
     endpoint = '/dummy'
     version = 'v99.9'
     requested_at = datetime(1970, 1, 1)
+    has_header = True
 
 
 @patch('vestapol.writers.text_writer.write_text')
-def test_write_api_data(mock):
-    api_data = 'a string'
+def test_write_data(mock):
+    data = 'a string'
     destination = MagicMock()
-    DummyCSVResource().write_data(api_data, destination)
+    DummyCSVResource().write_data(data, destination)
     mock.assert_called_with(
-        api_data,
+        data,
         Path(
             'dummy_resource',
             'csv',
@@ -29,3 +30,18 @@ def test_write_api_data(mock):
         ),
         destination
     )
+
+
+@patch('vestapol.web_resources.csv_resource.CSVResource.write_header')
+@patch('vestapol.web_resources.csv_resource.CSVResource.write_data')
+@patch('vestapol.web_resources.csv_resource.CSVResource.extract_data')
+def test_load(mock1, mock2, mock3):
+    mock_response_data = 'col1,col2'
+    mock1.return_value = mock_response_data
+    destination = MagicMock()
+
+    data = DummyCSVResource().load(destination)
+    assert data == mock_response_data
+    mock1.assert_called()
+    mock2.assert_called_with(mock_response_data, destination)
+    mock3.assert_called_with(mock_response_data, destination)

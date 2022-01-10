@@ -13,6 +13,7 @@ class JSONResource(base_resource.BaseResource):
         data = self.extract_data()
         self.write_data(data, destination)
         self.unnest_data(data, destination)
+        return data
 
     def write_data(self, api_data, destination):
         json_writer.write_json(

@@ -48,9 +48,12 @@ def test_get_hive_path():
 
 
 @patch('vestapol.web_resources.base_resource.BaseResource.extract_data')
-def test_extract(mock1, mock_write_data):
-    mock1.return_value = {'key': 'value'}
+def test_load(mock1, mock_write_data):
+    mock_response_data = {'key': 'value'}
+    mock1.return_value = mock_response_data
     destination = MagicMock()
-    DummyBaseResource().load(destination)
+    data = DummyBaseResource().load(destination)
+    
+    assert data == mock_response_data
     mock1.assert_called()
-    mock_write_data.assert_called_with({'key': 'value'}, destination)
+    mock_write_data.assert_called_with(mock_response_data, destination)
