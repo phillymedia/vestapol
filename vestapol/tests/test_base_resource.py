@@ -53,7 +53,7 @@ def test_load(mock1, mock_write_data):
     mock1.return_value = mock_response_data
     destination = MagicMock()
     data = DummyBaseResource().load(destination)
-    
+
     assert data == mock_response_data
     mock1.assert_called()
     mock_write_data.assert_called_with(mock_response_data, destination)

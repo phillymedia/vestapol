@@ -5,7 +5,7 @@ setup(
     version='0.0.1',
     description=(
         'Python package that loads data from the web and deploys a'
-        ' corresponding external table definition, so that the data can be' 
+        ' corresponding external table definition, so that the data can be'
         ' queried using standard SQL.'
     ),
     # TODO: edit so that install doesn't require gcp client libs

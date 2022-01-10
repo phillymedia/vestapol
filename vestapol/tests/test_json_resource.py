@@ -137,4 +137,3 @@ def test_load(mock1, mock2, mock_unnest_data):
     mock1.assert_called()
     mock2.assert_called_with(mock_response_data, destination)
     mock_unnest_data.assert_called_with(mock_response_data, destination)
-
