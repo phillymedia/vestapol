@@ -15,6 +15,7 @@ class BaseResource(ABC):
     def load(self, destination):
         data = self.extract_data()
         self.write_data(data, destination)
+        return data
 
     def extract_data(self):
         self.requested_at = datetime.utcnow().replace(microsecond=0)

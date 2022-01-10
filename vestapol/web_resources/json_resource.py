@@ -8,11 +8,11 @@ class JSONResource(base_resource.BaseResource):
     external_data_format_tag = 'jsonl'
     response_filename = 'data.json'
 
-
     def load(self, destination):
         data = self.extract_data()
         self.write_data(data, destination)
         self.unnest_data(data, destination)
+        return data
 
     def write_data(self, api_data, destination):
         json_writer.write_json(
@@ -24,11 +24,13 @@ class JSONResource(base_resource.BaseResource):
 
     def write_list(self, data: list[dict], destination, data_path=None):
         pathname = self.get_pathname(data_path)
-        json_writer.write_jsonl(data=data, pathname=pathname, destination=destination)
+        json_writer.write_jsonl(
+            data=data, pathname=pathname, destination=destination)
 
     def write_dict(self, data: dict, destination, data_path=None):
         pathname = self.get_pathname(data_path)
-        json_writer.write_json(data=data, pathname=pathname, destination=destination)
+        json_writer.write_json(
+            data=data, pathname=pathname, destination=destination)
 
     def get_pathname(self, data_path=None):
         jsonl_target_prefix = self.get_response_root(

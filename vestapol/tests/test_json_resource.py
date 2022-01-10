@@ -127,11 +127,13 @@ def test_write_list_no_data(mock):
 
 @patch('vestapol.web_resources.json_resource.JSONResource.write_data')
 @patch('vestapol.web_resources.json_resource.JSONResource.extract_data')
-def test_extract(mock1, mock2, mock_unnest_data):
-    mock1.return_value = {'key': 'value'}
+def test_load(mock1, mock2, mock_unnest_data):
+    mock_response_data = {'key': 'value'}
+    mock1.return_value = mock_response_data
     destination = MagicMock()
 
-    DummyJSONResource().load(destination)
+    data = DummyJSONResource().load(destination)
+    assert data == mock_response_data
     mock1.assert_called()
-    mock2.assert_called_with({'key': 'value'}, destination)
-    mock_unnest_data.assert_called_with({'key': 'value'}, destination)
+    mock2.assert_called_with(mock_response_data, destination)
+    mock_unnest_data.assert_called_with(mock_response_data, destination)

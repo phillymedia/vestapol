@@ -15,4 +15,3 @@ class BaseDestination(ABC):
         :rtype: str
         """
         raise NotImplementedError
-

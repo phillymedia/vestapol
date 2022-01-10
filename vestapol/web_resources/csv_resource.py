@@ -15,6 +15,7 @@ class CSVResource(base_resource.BaseResource):
         self.write_data(data, destination)
         if self.has_header:
             self.write_header(data, destination)
+        return data
 
     def write_data(self, data, destination):
         text_writer.write_text(

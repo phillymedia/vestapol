@@ -1,12 +1,15 @@
+from google.cloud import bigquery
 from vestapol.web_resources import CSVResource
 from vestapol.destinations import GoogleCloudPlatform
+
 
 class NYTCovid19Data_2022(CSVResource):
     name = 'nyt_covid19_us_counties_2022'
     base_url = 'https://raw.githubusercontent.com/'
     endpoint = 'nytimes/covid-19-data/master/rolling-averages/us-counties-2022.csv'
-    version = 'v0'   
+    version = 'v0'
     has_header = True
+
 
 destination = GoogleCloudPlatform()
 
@@ -15,7 +18,6 @@ resource.load(destination)
 tablename = destination.create_table(resource)
 
 
-from google.cloud import bigquery
 client = bigquery.Client()
 query = f"""
     select 
