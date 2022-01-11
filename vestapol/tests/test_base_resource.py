@@ -1,6 +1,6 @@
 import pytest
 from unittest.mock import patch, MagicMock
-from datetime import datetime
+from pendulum import DateTime
 from pathlib import Path
 
 from vestapol.web_resources import base_resource
@@ -12,7 +12,7 @@ class DummyBaseResource(base_resource.BaseResource):
     endpoint = '/dummy'
     response_format_tag = 'dum'
     version = 'v99.9'
-    requested_at = datetime(1970, 1, 1)
+    requested_at = DateTime(1970, 1, 1)
 
     def write_data(self, data):
         pass

@@ -1,15 +1,19 @@
 [tool.poetry]
 name = "vestapol"
-version = "0.0.0"
+version = "0.0.3-alpha.1"
 description = "Python package that loads data from the web and deploys a corresponding external table definition, so that the data can be queried using standard SQL."
 authors = ["Brian Waligorski <bwaligorski@inquirer.com>"]
 license = "Apache License 2.0"
+readme = "README.md"  # Markdown files are supported
+repository = "https://github.com/phillymedia/vestapol"
+homepage = "https://github.com/phillymedia/vestapol"
 
 [tool.poetry.dependencies]
 python = ">=3.9,<3.11"
 requests = "^2.26"
 google-cloud-storage = "^1.43"
 google-cloud-bigquery = "^2.31"
+pendulum = "^2.1"
 
 [tool.poetry.dev-dependencies]
 python-dotenv = "0.19.2"

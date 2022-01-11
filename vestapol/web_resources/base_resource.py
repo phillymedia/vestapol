@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from datetime import datetime
+from pendulum import DateTime
 import pathlib
 from vestapol.api import api
 
@@ -18,7 +18,7 @@ class BaseResource(ABC):
         return data
 
     def extract_data(self):
-        self.requested_at = datetime.utcnow().replace(microsecond=0)
+        self.requested_at = DateTime.utcnow().replace(microsecond=0)
         return api.get_api_data(f'{self.base_url}{self.endpoint}', self.response_format_tag)
 
     @abstractmethod
