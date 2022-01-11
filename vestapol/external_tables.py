@@ -11,7 +11,7 @@ def get_dataset(client, project_id, dataset_id, dataset_location):
 def get_external_data_configuration(source_uri_prefix_fq, source_uris, source_format):
 
     bq_source_format = {
-        'json': 'NEWLINE_DELIMITED_JSON',
+        'jsonl': 'NEWLINE_DELIMITED_JSON',
         'csv': 'CSV'
     }[source_format]
 

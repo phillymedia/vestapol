@@ -1,6 +1,6 @@
 import pytest
 from unittest.mock import patch, MagicMock
-from datetime import datetime
+from pendulum import DateTime
 from pathlib import Path
 
 from vestapol.web_resources import json_resource
@@ -11,7 +11,7 @@ class DummyJSONResource(json_resource.JSONResource):
     name = 'dummy_resource'
     endpoint = '/dummy'
     version = 'v99.9'
-    requested_at = datetime(1970, 1, 1)
+    requested_at = DateTime(1970, 1, 1)
 
     def unnest_data(self, data):
         pass

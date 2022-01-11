@@ -1,5 +1,5 @@
 from unittest.mock import MagicMock, patch
-from datetime import datetime
+from pendulum import DateTime
 from pathlib import Path
 
 from vestapol.web_resources import csv_resource
@@ -10,7 +10,7 @@ class DummyCSVResource(csv_resource.CSVResource):
     name = 'dummy_resource'
     endpoint = '/dummy'
     version = 'v99.9'
-    requested_at = datetime(1970, 1, 1)
+    requested_at = DateTime(1970, 1, 1)
     has_header = True
 
 
