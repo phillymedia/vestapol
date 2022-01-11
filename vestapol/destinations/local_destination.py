@@ -1,10 +1,13 @@
+import logging
 import pathlib
 from vestapol.destinations import base_destination
 
+logger = logging.getLogger(__name__)
 
 class Local(base_destination.BaseDestination):
     def write_data(self, data: str, pathname: str):
         abs_pathname = self.create_local_folders(pathname)
+        logger.debug(f"Writing data to {abs_pathname}")
         with abs_pathname.open(mode='w') as file:
             file.write(data)
 

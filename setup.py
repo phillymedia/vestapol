@@ -1,8 +1,15 @@
+import setuptools
+
+if __name__ == "__main__":
+    setuptools.setup()
+
+'''
 from setuptools import setup, find_packages
+
 
 setup(
     name='vestapol',
-    version='0.0.1',
+    version='0.1.0',
     description=(
         'Python package that loads data from the web and deploys a'
         ' corresponding external table definition, so that the data can be'
@@ -18,3 +25,4 @@ setup(
     packages=find_packages(),
     zip_safe=False
 )
+'''
