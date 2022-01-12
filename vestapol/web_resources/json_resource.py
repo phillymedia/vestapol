@@ -39,10 +39,16 @@ class JSONResource(base_resource.BaseResource):
         pass
 
     def write_list(self, data: list[dict], destination, data_path=None):
+        if not isinstance(data, list):
+            raise TypeError(f"Expected a list, received {type(data)}")
+
         pathname = self.get_pathname(data_path)
         json_writer.write_jsonl(data=data, pathname=pathname, destination=destination)
 
     def write_dict(self, data: dict, destination, data_path=None):
+        if not isinstance(data, dict):
+            raise TypeError(f"Expected a dict, received {type(data)}")
+
         pathname = self.get_pathname(data_path)
         json_writer.write_json(data=data, pathname=pathname, destination=destination)
 
