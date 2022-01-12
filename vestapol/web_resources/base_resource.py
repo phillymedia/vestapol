@@ -7,13 +7,13 @@ from vestapol.api import api
 class BaseResource(ABC):
     def __init__(self, name=None, base_url=None, endpoint=None, version=None, response_format_tag=None, 
         external_data_format_tag=None, response_filename=None):
-        self.name = name or self.name
-        self.base_url = base_url or self.base_url
-        self.endpoint = endpoint or self.endpoint
-        self.version = version or self.version
-        self.response_format_tag = response_format_tag or self.response_format_tag
-        self.external_data_format_tag = external_data_format_tag or self.external_data_format_tag
-        self.response_filename = response_filename or self.response_filename
+        self.name = name
+        self.base_url = base_url
+        self.endpoint = endpoint
+        self.version = version
+        self.response_format_tag = response_format_tag
+        self.external_data_format_tag = external_data_format_tag
+        self.response_filename = response_filename
 
     def load(self, destination):
         data = self.request_data()

@@ -10,10 +10,10 @@ class CSVResource(base_resource.BaseResource):
     header_data: dict
 
     def __init__(self, name=None, base_url=None, endpoint=None, version=None, has_header=None):
-        self.name = name or self.name
-        self.base_url = base_url or self.base_url
-        self.endpoint = endpoint or self.endpoint
-        self.version = version or self.version
+        self.name = name
+        self.base_url = base_url
+        self.endpoint = endpoint
+        self.version = version
         super().__init__(self.name, self.base_url, self.endpoint, self.version, self.response_format_tag, self.external_data_format_tag, self.response_filename)
         
         self.has_header = has_header or self.has_header
