@@ -34,7 +34,7 @@ def test_write_data(mock):
 
 @patch('vestapol.web_resources.csv_resource.CSVResource.write_header')
 @patch('vestapol.web_resources.csv_resource.CSVResource.write_data')
-@patch('vestapol.web_resources.csv_resource.CSVResource.extract_data')
+@patch('vestapol.web_resources.csv_resource.CSVResource.request_data')
 def test_load(mock1, mock2, mock3):
     mock_response_data = 'col1,col2'
     mock1.return_value = mock_response_data

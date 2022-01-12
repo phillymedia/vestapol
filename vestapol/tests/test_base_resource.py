@@ -38,8 +38,8 @@ def test_resource():
 
 
 @patch('vestapol.api.api.get_api_data')
-def test_extract_data(mock):
-    DummyBaseResource().extract_data()
+def test_request_data(mock):
+    DummyBaseResource().request_data()
     mock.assert_called_with('www.test.com/dummy', 'dum')
 
 
@@ -49,7 +49,7 @@ def test_get_hive_path():
         data_path) == 'keyA=value1/keyB=value2'
 
 
-@patch('vestapol.web_resources.base_resource.BaseResource.extract_data')
+@patch('vestapol.web_resources.base_resource.BaseResource.request_data')
 def test_load(mock1, mock_write_data):
     mock_response_data = {'key': 'value'}
     mock1.return_value = mock_response_data

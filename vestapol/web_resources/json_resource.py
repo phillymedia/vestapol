@@ -17,7 +17,7 @@ class JSONResource(base_resource.BaseResource):
 
 
     def load(self, destination):
-        data = self.extract_data()
+        data = self.request_data()
         self.write_data(data, destination)
         self.unnest_data(data, destination)
         return data

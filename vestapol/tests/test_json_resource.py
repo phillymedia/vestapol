@@ -126,7 +126,7 @@ def test_write_list_no_data(mock):
 
 
 @patch('vestapol.web_resources.json_resource.JSONResource.write_data')
-@patch('vestapol.web_resources.json_resource.JSONResource.extract_data')
+@patch('vestapol.web_resources.json_resource.JSONResource.request_data')
 def test_load(mock1, mock2, mock_unnest_data):
     mock_response_data = {'key': 'value'}
     mock1.return_value = mock_response_data

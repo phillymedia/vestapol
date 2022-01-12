@@ -19,7 +19,7 @@ class CSVResource(base_resource.BaseResource):
         self.has_header = has_header or self.has_header
 
     def load(self, destination):
-        data = self.extract_data()
+        data = self.request_data()
         self.write_data(data, destination)
         if self.has_header:
             self.write_header(data, destination)
