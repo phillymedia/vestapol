@@ -3,8 +3,8 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-JSON_FORMAT_TAG = 'json'
-CSV_FORMAT_TAG = 'csv'
+JSON_FORMAT_TAG = "json"
+CSV_FORMAT_TAG = "csv"
 
 
 def get_api_data(url, response_format_tag):
@@ -24,5 +24,5 @@ def get_api_data(url, response_format_tag):
         return response.text
 
     else:
-        logger.error(f'Unsupported format tag: {response_format_tag}')
-        raise ValueError(f'Unsupported format tag: {response_format_tag}')
+        logger.error(f"Unsupported format tag: {response_format_tag}")
+        raise ValueError(f"Unsupported format tag: {response_format_tag}")

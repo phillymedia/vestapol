@@ -5,8 +5,16 @@ from vestapol.api import api
 
 
 class BaseResource(ABC):
-    def __init__(self, name, base_url, endpoint, version, response_format_tag, 
-        external_data_format_tag, response_filename='data'):
+    def __init__(
+        self,
+        name,
+        base_url,
+        endpoint,
+        version,
+        response_format_tag,
+        external_data_format_tag,
+        response_filename="data",
+    ):
         self.name = name
         self.base_url = base_url
         self.endpoint = endpoint
@@ -22,19 +30,22 @@ class BaseResource(ABC):
 
     def request_data(self):
         self.requested_at = DateTime.utcnow().replace(microsecond=0)
-        return api.get_api_data(f'{self.base_url}{self.endpoint}', self.response_format_tag)
+        return api.get_api_data(
+            f"{self.base_url}{self.endpoint}", self.response_format_tag
+        )
 
     @abstractmethod
     def write_data(self, data, destination):
         pass
 
     def get_response_root(self, format_tag):
-        return pathlib.Path(self.name, format_tag, self.version, self.requested_at_hive_path)
+        return pathlib.Path(
+            self.name, format_tag, self.version, self.requested_at_hive_path
+        )
 
     @property
     def response_target_prefix(self):
-        self._response_target_prefix = self.get_response_root(
-            self.response_format_tag)
+        self._response_target_prefix = self.get_response_root(self.response_format_tag)
         return self._response_target_prefix
 
     @property
@@ -46,8 +57,8 @@ class BaseResource(ABC):
 
         prefix_components = []
         for x in data_path:
-            prefix_components.append(f'{x[0]}={x[1]}')
+            prefix_components.append(f"{x[0]}={x[1]}")
 
-        hive_path = '/'.join(prefix_components)
+        hive_path = "/".join(prefix_components)
 
         return hive_path
