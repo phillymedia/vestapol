@@ -27,15 +27,9 @@ from google.cloud import bigquery
 
 client = bigquery.Client()
 query = f"""
-    select 
-        date,
-        state,
-        county,
-        cases_avg_per_100k
+    select date, state, county, cases_avg_per_100k
     from `{tablename}`
     where requested_at = '{nyt_covid_data_2022.requested_at}'
-          and county = 'Philadelphia'
-    order by 1 desc
     limit 5
 """
 query_job = client.query(query)
