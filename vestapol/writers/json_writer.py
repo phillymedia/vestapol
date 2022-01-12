@@ -7,7 +7,7 @@ logger = logging.getLogger(__name__)
 
 def write_json(data: dict, pathname, destination):
     if not isinstance(data, dict):
-        raise TypeError(f"Expected a dice, received {type(data)}")
+        raise TypeError(f"Expected a dict, received {type(data)}")
 
     data_string = json.dumps(data)
     destination.write_data(data_string, pathname)
