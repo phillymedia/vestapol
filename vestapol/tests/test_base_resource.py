@@ -11,6 +11,8 @@ class DummyBaseResource(base_resource.BaseResource):
     name = 'dummy_resource'
     endpoint = '/dummy'
     response_format_tag = 'dum'
+    external_data_format_tag = 'duml'
+    response_filename = 'abc.txt'
     version = 'v99.9'
     requested_at = DateTime(1970, 1, 1)
 
