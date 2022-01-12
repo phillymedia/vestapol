@@ -7,22 +7,33 @@ from vestapol.web_resources import base_resource
 
 
 class DummyBaseResource(base_resource.BaseResource):
-    base_url = 'www.test.com'
-    name = 'dummy_resource'
-    endpoint = '/dummy'
-    response_format_tag = 'dum'
-    external_data_format_tag = 'duml'
-    response_filename = 'abc.txt'
-    version = 'v99.9'
+    base_url = "www.test.com"
+    name = "dummy_resource"
+    endpoint = "/dummy"
+    response_format_tag = "dum"
+    external_data_format_tag = "duml"
+    response_filename = "abc.txt"
+    version = "v99.9"
     requested_at = DateTime(1970, 1, 1)
 
-    def write_data(self, data):
+    def write_data(self, data, destination):
         pass
+
+    def __init__(self):
+        super().__init__(
+            self.name,
+            self.base_url,
+            self.endpoint,
+            self.version,
+            self.response_format_tag,
+            self.external_data_format_tag,
+            self.response_filename,
+        )
 
 
 @pytest.fixture
 def mock_write_data():
-    with patch(__name__+'.'+'DummyBaseResource.write_data') as _patched:
+    with patch(__name__ + "." + "DummyBaseResource.write_data") as _patched:
         yield _patched
 
 
@@ -30,28 +41,24 @@ def test_resource():
     resource = DummyBaseResource()
 
     assert resource.response_target_prefix == Path(
-        'dummy_resource',
-        'dum',
-        'v99.9',
-        'requested_at=1970-01-01 00:00:00'
+        "dummy_resource", "dum", "v99.9", "requested_at=1970-01-01 00:00:00"
     )
 
 
-@patch('vestapol.api.api.get_api_data')
+@patch("vestapol.api.api.get_api_data")
 def test_request_data(mock):
     DummyBaseResource().request_data()
-    mock.assert_called_with('www.test.com/dummy', 'dum')
+    mock.assert_called_with("www.test.com/dummy", "dum")
 
 
 def test_get_hive_path():
-    data_path = [('keyA', 'value1'), ('keyB', 'value2')]
-    assert DummyBaseResource().get_hive_path(
-        data_path) == 'keyA=value1/keyB=value2'
+    data_path = [("keyA", "value1"), ("keyB", "value2")]
+    assert DummyBaseResource().get_hive_path(data_path) == "keyA=value1/keyB=value2"
 
 
-@patch('vestapol.web_resources.base_resource.BaseResource.request_data')
+@patch("vestapol.web_resources.base_resource.BaseResource.request_data")
 def test_load(mock1, mock_write_data):
-    mock_response_data = {'key': 'value'}
+    mock_response_data = {"key": "value"}
     mock1.return_value = mock_response_data
     destination = MagicMock()
     data = DummyBaseResource().load(destination)

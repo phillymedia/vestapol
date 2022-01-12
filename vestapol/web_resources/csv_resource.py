@@ -9,7 +9,7 @@ class CSVResource(base_resource.BaseResource):
     response_filename = 'data.csv'
     header_data: dict
 
-    def __init__(self, name=None, base_url=None, endpoint=None, version=None, has_header=None):
+    def __init__(self, name, base_url, endpoint, version, has_header):
         self.name = name
         self.base_url = base_url
         self.endpoint = endpoint
@@ -32,7 +32,7 @@ class CSVResource(base_resource.BaseResource):
     def write_header(self, data, destination):
         header_row = data.split('\n')[0]
         self.header_data = {
-            'column_metadata': [
+            'columns': [
                 {
                     'name': column,
                     'index': idx

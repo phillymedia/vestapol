@@ -5,8 +5,8 @@ from vestapol.api import api
 
 
 class BaseResource(ABC):
-    def __init__(self, name=None, base_url=None, endpoint=None, version=None, response_format_tag=None, 
-        external_data_format_tag=None, response_filename=None):
+    def __init__(self, name, base_url, endpoint, version, response_format_tag, 
+        external_data_format_tag, response_filename='data'):
         self.name = name
         self.base_url = base_url
         self.endpoint = endpoint

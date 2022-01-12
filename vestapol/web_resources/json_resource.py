@@ -8,7 +8,7 @@ class JSONResource(base_resource.BaseResource):
     external_data_format_tag = 'jsonl'
     response_filename = 'data.json'
 
-    def __init__(self, name=None, base_url=None, endpoint=None, version=None):
+    def __init__(self, name, base_url, endpoint, version):
         self.name = name
         self.base_url = base_url
         self.endpoint = endpoint

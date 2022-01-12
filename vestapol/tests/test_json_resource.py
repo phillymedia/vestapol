@@ -13,8 +13,11 @@ class DummyJSONResource(json_resource.JSONResource):
     version = 'v99.9'
     requested_at = DateTime(1970, 1, 1)
 
-    def unnest_data(self, data):
+    def unnest_data(self, data, destination):
         pass
+
+    def __init__(self):
+        super().__init__(self.name, self.base_url, self.endpoint, self.version)
 
 
 @pytest.fixture
