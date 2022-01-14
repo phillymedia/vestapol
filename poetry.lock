@@ -57,7 +57,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 
 [[package]]
 name = "google-api-core"
-version = "2.3.2"
+version = "2.4.0"
 description = "Google API client core library"
 category = "main"
 optional = false
@@ -97,7 +97,7 @@ reauth = ["pyu2f (>=0.1.5)"]
 
 [[package]]
 name = "google-cloud-bigquery"
-version = "2.31.0"
+version = "2.32.0"
 description = "Google BigQuery API client library"
 category = "main"
 optional = false
@@ -444,8 +444,8 @@ socks = ["PySocks (>=1.5.6,!=1.5.7,<2.0)"]
 
 [metadata]
 lock-version = "1.1"
-python-versions = ">=3.9,<3.11"
-content-hash = "308d21fdc958427838ddf8f25bf18501c461deedfff6ea4fb51101390f45e2ea"
+python-versions = ">=3.8.12,<3.11"
+content-hash = "078f092d060ad6a72f2a2f5fa5195ea0df3b4f5010e1d2feca9f5b1ab41919ff"
 
 [metadata.files]
 atomicwrites = [
@@ -473,16 +473,16 @@ colorama = [
     {file = "colorama-0.4.4.tar.gz", hash = "sha256:5941b2b48a20143d2267e95b1c2a7603ce057ee39fd88e7329b0c292aa16869b"},
 ]
 google-api-core = [
-    {file = "google-api-core-2.3.2.tar.gz", hash = "sha256:c8889f45cf58deca522888ae1d39b2a25e93e7d1b019ae8cee6456d5c726a40c"},
-    {file = "google_api_core-2.3.2-py2.py3-none-any.whl", hash = "sha256:3c562d393aed7e3d2011fcd1f103b490c411dcf5644b6312ca11a166a6ea8faf"},
+    {file = "google-api-core-2.4.0.tar.gz", hash = "sha256:ba8787b7c61632cd0340f095e1c036bef9426b2594f10afb290ba311ae8cb2cb"},
+    {file = "google_api_core-2.4.0-py2.py3-none-any.whl", hash = "sha256:58e2c1171a3d51778bf4e428fbb4bf79cbd05007b4b44deaa80cf73c80eebc0f"},
 ]
 google-auth = [
     {file = "google-auth-2.3.3.tar.gz", hash = "sha256:d83570a664c10b97a1dc6f8df87e5fdfff012f48f62be131e449c20dfc32630e"},
     {file = "google_auth-2.3.3-py2.py3-none-any.whl", hash = "sha256:a348a50b027679cb7dae98043ac8dbcc1d7951f06d8387496071a1e05a2465c0"},
 ]
 google-cloud-bigquery = [
-    {file = "google-cloud-bigquery-2.31.0.tar.gz", hash = "sha256:ff66d7d1f64795a855784706c3baa52d18fa0cd1cc4f0a150cf74268abb53ac0"},
-    {file = "google_cloud_bigquery-2.31.0-py2.py3-none-any.whl", hash = "sha256:d8cb58e50d8688cbcc1ca0562c7801f8524af3a8553f5d24f1d7353ce3a6c143"},
+    {file = "google-cloud-bigquery-2.32.0.tar.gz", hash = "sha256:f3863ac4293f0a4585e44461d82b91f9239721ef33fc9575d401b4da7dc127bd"},
+    {file = "google_cloud_bigquery-2.32.0-py2.py3-none-any.whl", hash = "sha256:09588ffdf0ae92673d980cdade81a371ff1852c043bebd8bab68a47fd69d8a1f"},
 ]
 google-cloud-core = [
     {file = "google-cloud-core-2.2.1.tar.gz", hash = "sha256:476d1f71ab78089e0638e0aaf34bfdc99bab4fce8f4170ba6321a5243d13c5c7"},

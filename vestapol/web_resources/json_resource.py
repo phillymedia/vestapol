@@ -1,4 +1,5 @@
 from abc import abstractmethod
+from typing import List
 from vestapol.writers import json_writer
 from vestapol.web_resources import base_resource
 
@@ -38,7 +39,7 @@ class JSONResource(base_resource.BaseResource):
     def unnest_data(self, data, destination):
         pass
 
-    def write_list(self, data: list[dict], destination, data_path=None):
+    def write_list(self, data: List[dict], destination, data_path=None):
         if not isinstance(data, list):
             raise TypeError(f"Expected a list, received {type(data)}")
 
