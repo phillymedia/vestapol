@@ -24,12 +24,12 @@ class BaseResource(ABC):
         self.response_filename = response_filename
 
     def load(self, destination):
-        self.requested_at = DateTime.utcnow().replace(microsecond=0)
         data = self.request_data()
         self.write_data(data, destination)
         return data
 
     def request_data(self):
+        self.requested_at = DateTime.utcnow().replace(microsecond=0)
         return api.get_api_data(
             f"{self.base_url}{self.endpoint}", self.response_format_tag
         )
