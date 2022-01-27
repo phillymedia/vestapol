@@ -9,11 +9,12 @@ class CSVResource(base_resource.BaseResource):
     response_filename = "data.csv"
     header_data: dict
 
-    def __init__(self, name, base_url, endpoint, version, has_header):
+    def __init__(self, name, base_url, endpoint, version, has_header, query_params=None):
         self.name = name
         self.base_url = base_url
         self.endpoint = endpoint
         self.version = version
+        self.query_params = query_params
         super().__init__(
             self.name,
             self.base_url,
@@ -22,6 +23,7 @@ class CSVResource(base_resource.BaseResource):
             self.response_format_tag,
             self.external_data_format_tag,
             self.response_filename,
+            self.query_params
         )
 
         self.has_header = has_header or self.has_header
