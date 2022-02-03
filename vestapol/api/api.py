@@ -7,11 +7,11 @@ JSON_FORMAT_TAG = "json"
 CSV_FORMAT_TAG = "csv"
 
 
-def get_api_data(url, response_format_tag, query_params):
+def get_api_data(url, response_format_tag, query_params, request_headers):
     logger.debug(f"GET {url}")
 
     try:
-        response = requests.get(url, params=query_params)
+        response = requests.get(url, params=query_params, headers=request_headers)
         logger.debug(response.url)
         response.raise_for_status()
     except Exception as e:

@@ -1,4 +1,5 @@
 from abc import abstractmethod
+import re
 from typing import List
 from vestapol.writers import json_writer
 from vestapol.web_resources import base_resource
@@ -9,12 +10,15 @@ class JSONResource(base_resource.BaseResource):
     external_data_format_tag = "jsonl"
     response_filename = "data.json"
 
-    def __init__(self, name, base_url, endpoint, version, query_params=None):
+    def __init__(
+        self, name, base_url, endpoint, version, query_params=None, request_headers=None
+    ):
         self.name = name
         self.base_url = base_url
         self.endpoint = endpoint
         self.version = version
         self.query_params = query_params
+        self.request_headers = request_headers
         super().__init__(
             self.name,
             self.base_url,
@@ -23,7 +27,8 @@ class JSONResource(base_resource.BaseResource):
             self.response_format_tag,
             self.external_data_format_tag,
             self.response_filename,
-            self.query_params
+            self.query_params,
+            self.request_headers,
         )
 
     def load(self, destination):
