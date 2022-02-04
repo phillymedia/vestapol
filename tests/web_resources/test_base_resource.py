@@ -15,6 +15,8 @@ class DummyBaseResource(base_resource.BaseResource):
     response_filename = "abc.txt"
     version = "v99.9"
     requested_at = DateTime(1970, 1, 1)
+    query_params = {"param1": "value1"}
+    request_headers = {"header_key": "header_value"}
 
     def write_data(self, data, destination):
         pass
@@ -28,6 +30,8 @@ class DummyBaseResource(base_resource.BaseResource):
             self.response_format_tag,
             self.external_data_format_tag,
             self.response_filename,
+            self.query_params,
+            self.request_headers
         )
 
 
@@ -48,7 +52,7 @@ def test_resource():
 @patch("vestapol.api.api.get_api_data")
 def test_request_data(mock):
     DummyBaseResource().request_data()
-    mock.assert_called_with("www.test.com/dummy", "dum")
+    mock.assert_called_with("www.test.com/dummy", "dum", {"param1": "value1"}, {"header_key": "header_value"})
 
 
 def test_get_hive_path():
