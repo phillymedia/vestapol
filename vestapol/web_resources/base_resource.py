@@ -26,6 +26,7 @@ class BaseResource(ABC):
         self.response_filename = response_filename
         self.query_params = query_params
         self.request_headers = request_headers
+        self.requested_at = DateTime.utcnow().replace(microsecond=0)
 
     def load(self, destination):
         data = self.request_data()
@@ -33,7 +34,6 @@ class BaseResource(ABC):
         return data
 
     def request_data(self):
-        self.requested_at = DateTime.utcnow().replace(microsecond=0)
         return api.get_api_data(
             f"{self.base_url}{self.endpoint}",
             self.response_format_tag,
