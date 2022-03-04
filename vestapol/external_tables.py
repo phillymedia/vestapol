@@ -17,7 +17,6 @@ def get_external_data_configuration(source_uri_prefix_fq, source_uris, source_fo
 
     hive_partitioning_opts = bigquery.external_config.HivePartitioningOptions()
     hive_partitioning_opts.mode = "AUTO"
-    hive_partitioning_opts.require_partition_filter = True
     hive_partitioning_opts.source_uri_prefix = source_uri_prefix_fq
 
     external_config.hive_partitioning = hive_partitioning_opts
