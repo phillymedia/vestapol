@@ -17,7 +17,7 @@ class DummyJSONResource(json_resource.JSONResource):
         pass
 
     def __init__(self):
-        super().__init__(self.name, self.base_url, self.endpoint, self.version)
+        super().__init__(self.name, self.base_url, self.endpoint, self.version, self.requested_at)
 
 
 @pytest.fixture
@@ -31,6 +31,7 @@ def test_write_data(mock):
     data = {"key": "value"}
     destination = MagicMock()
     DummyJSONResource().write_data(data, destination)
+#    import ipdb; ipdb.set_trace()
     mock.assert_called_with(
         data,
         Path(

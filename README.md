@@ -3,6 +3,19 @@ vestapol is a Python package that loads data from the web and deploys a correspo
 
 ["Vestapol"](https://www.youtube.com/watch?v=SKQG-JGyn7U) is an open D Major tuning for the guitar. It is named after a 19th-century composition distributed in some of the earliest instructional guides for guitar.
 
+## Setup
+
+Install poetry: curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
+
+add poetry to path: source $HOME/.poetry/env
+
+create poetry virtual env: poetry run
+
+install modules from poetry.lock: poetry install
+
+
+
+
 ## Usage
 ```python
 from vestapol.web_resources import CSVResource

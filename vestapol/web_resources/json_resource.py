@@ -1,6 +1,7 @@
 from abc import abstractmethod
 import re
 from typing import List
+from pendulum import DateTime
 from vestapol.writers import json_writer
 from vestapol.web_resources import base_resource
 
@@ -11,7 +12,7 @@ class JSONResource(base_resource.BaseResource):
     response_filename = "data.json"
 
     def __init__(
-        self, name, base_url, endpoint, version, query_params=None, request_headers=None
+        self, name, base_url, endpoint, version, query_params=None, request_headers=None, requested_at=DateTime.utcnow().replace(microsecond=0)
     ):
         self.name = name
         self.base_url = base_url
@@ -29,6 +30,7 @@ class JSONResource(base_resource.BaseResource):
             self.response_filename,
             self.query_params,
             self.request_headers,
+            self.requested_at
         )
 
     def load(self, destination):
