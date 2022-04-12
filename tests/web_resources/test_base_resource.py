@@ -7,16 +7,16 @@ from vestapol.web_resources import base_resource
 
 
 class DummyBaseResource(base_resource.BaseResource):
-    base_url = "www.test.com"
     name = "dummy_resource"
+    base_url = "www.test.com"
     endpoint = "/dummy"
+    version = "v99.9"
     response_format_tag = "dum"
     external_data_format_tag = "duml"
     response_filename = "abc.txt"
-    version = "v99.9"
-    requested_at = DateTime(1970, 1, 1)
     query_params = {"param1": "value1"}
     request_headers = {"header_key": "header_value"}
+    requested_at = DateTime(1970, 1, 1)
 
     def write_data(self, data, destination):
         pass
@@ -31,7 +31,8 @@ class DummyBaseResource(base_resource.BaseResource):
             self.external_data_format_tag,
             self.response_filename,
             self.query_params,
-            self.request_headers
+            self.request_headers,
+            self.requested_at
         )
 
 
@@ -43,7 +44,6 @@ def mock_write_data():
 
 def test_resource():
     resource = DummyBaseResource()
-
     assert resource.response_target_prefix == Path(
         "dummy_resource", "dum", "v99.9", "requested_at=1970-01-01 00:00:00"
     )
