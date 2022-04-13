@@ -17,7 +17,7 @@ vestapol is a Python package that loads data from the web and deploys a correspo
 
 3. Create poetry virtual env:
 ```shell
-    poetry run
+    poetry shell
 ```
 
 4. Install modules from poetry.lock:
