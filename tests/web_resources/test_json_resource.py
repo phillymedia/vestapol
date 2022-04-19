@@ -31,7 +31,6 @@ def test_write_data(mock):
     data = {"key": "value"}
     destination = MagicMock()
     DummyJSONResource().write_data(data, destination)
-#    import ipdb; ipdb.set_trace()
     mock.assert_called_with(
         data,
         Path(
