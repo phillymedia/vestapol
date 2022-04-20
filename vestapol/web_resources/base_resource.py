@@ -16,7 +16,6 @@ class BaseResource(ABC):
         response_filename="data",
         query_params=None,
         request_headers=None,
-        requested_at=DateTime.utcnow().replace(microsecond=0)
     ):
         self.name = name
         self.base_url = base_url
@@ -27,7 +26,7 @@ class BaseResource(ABC):
         self.response_filename = response_filename
         self.query_params = query_params
         self.request_headers = request_headers
-        self.requested_at = requested_at
+        self.requested_at = DateTime.utcnow().replace(microsecond=0)
 
     def load(self, destination):
         data = self.request_data()
