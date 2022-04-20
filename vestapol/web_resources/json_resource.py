@@ -11,7 +11,7 @@ class JSONResource(base_resource.BaseResource):
     response_filename = "data.json"
 
     def __init__(
-        self, name, base_url, endpoint, version, query_params=None
+        self, name, base_url, endpoint, version, query_params=None, request_headers=None
     ):
         self.name = name
         self.base_url = base_url
