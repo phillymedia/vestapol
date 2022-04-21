@@ -16,8 +16,10 @@ class DummyJSONResource(json_resource.JSONResource):
     def unnest_data(self, data, destination):
         pass
 
-    def __init__(self):
-        super().__init__(self.name, self.base_url, self.endpoint, self.version, self.requested_at)
+    @patch("vestapol.web_resources.base_resource.DateTime")
+    def __init__(self, mock_datetime):
+        mock_datetime.utcnow = MagicMock(return_value=DateTime(1970, 1, 1))
+        super().__init__(self.name, self.base_url, self.endpoint, self.version)
 
 
 @pytest.fixture

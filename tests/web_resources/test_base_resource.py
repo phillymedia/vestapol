@@ -16,7 +16,6 @@ class DummyBaseResource(base_resource.BaseResource):
     response_filename = "abc.txt"
     query_params = {"param1": "value1"}
     request_headers = {"header_key": "header_value"}
-    requested_at = DateTime(1970, 1, 1)
 
     def write_data(self, data, destination):
         pass
@@ -32,7 +31,6 @@ class DummyBaseResource(base_resource.BaseResource):
             self.response_filename,
             self.query_params,
             self.request_headers,
-            self.requested_at
         )
 
 
@@ -42,8 +40,11 @@ def mock_write_data():
         yield _patched
 
 
-def test_resource():
+@patch("vestapol.web_resources.base_resource.DateTime")
+def test_resource(mock_datetime):
+    mock_datetime.utcnow = MagicMock(return_value=DateTime(1970, 1, 1))
     resource = DummyBaseResource()
+
     assert resource.response_target_prefix == Path(
         "dummy_resource", "dum", "v99.9", "requested_at=1970-01-01 00:00:00"
     )
@@ -52,7 +53,12 @@ def test_resource():
 @patch("vestapol.api.api.get_api_data")
 def test_request_data(mock):
     DummyBaseResource().request_data()
-    mock.assert_called_with("www.test.com/dummy", "dum", {"param1": "value1"}, {"header_key": "header_value"})
+    mock.assert_called_with(
+        "www.test.com/dummy",
+        "dum",
+        {"param1": "value1"},
+        {"header_key": "header_value"},
+    )
 
 
 def test_get_hive_path():
