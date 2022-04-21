@@ -7,14 +7,13 @@ from vestapol.web_resources import base_resource
 
 
 class DummyBaseResource(base_resource.BaseResource):
-    base_url = "www.test.com"
     name = "dummy_resource"
+    base_url = "www.test.com"
     endpoint = "/dummy"
+    version = "v99.9"
     response_format_tag = "dum"
     external_data_format_tag = "duml"
     response_filename = "abc.txt"
-    version = "v99.9"
-    requested_at = DateTime(1970, 1, 1)
     query_params = {"param1": "value1"}
     request_headers = {"header_key": "header_value"}
 
@@ -31,7 +30,7 @@ class DummyBaseResource(base_resource.BaseResource):
             self.external_data_format_tag,
             self.response_filename,
             self.query_params,
-            self.request_headers
+            self.request_headers,
         )
 
 
@@ -41,7 +40,9 @@ def mock_write_data():
         yield _patched
 
 
-def test_resource():
+@patch("vestapol.web_resources.base_resource.DateTime")
+def test_resource(mock_datetime):
+    mock_datetime.utcnow = MagicMock(return_value=DateTime(1970, 1, 1))
     resource = DummyBaseResource()
 
     assert resource.response_target_prefix == Path(
@@ -52,7 +53,12 @@ def test_resource():
 @patch("vestapol.api.api.get_api_data")
 def test_request_data(mock):
     DummyBaseResource().request_data()
-    mock.assert_called_with("www.test.com/dummy", "dum", {"param1": "value1"}, {"header_key": "header_value"})
+    mock.assert_called_with(
+        "www.test.com/dummy",
+        "dum",
+        {"param1": "value1"},
+        {"header_key": "header_value"},
+    )
 
 
 def test_get_hive_path():

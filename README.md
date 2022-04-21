@@ -32,6 +32,7 @@ vestapol is a Python package that loads data from the web and deploys a correspo
 - `GBQ_PROJECT_ID`: the BigQuery project identifier (e.g. `inq-warehouse`)
 - `GBQ_DATASET_ID`: the BigQuery dataset where external tables will be created (e.g. `data_catalog_waligob`)
 - `GBQ_DATASET_LOCATION`: the BigQuery dataset location (e.g. `US`)
+- `GOOGLE_APPLICATION_CREDENTIALS=`: location of the GCS service account keyfile (e.g. `~/inq-warehouse-f0962a57089e-inf.json`)
 
 
 ## Usage
