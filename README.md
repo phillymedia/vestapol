@@ -18,25 +18,19 @@ vestapol is a Python package that loads data from the web and deploys a correspo
     source $HOME/.poetry/env
 ```
 
-3. Create poetry virtual env:
-
-```shell
-    poetry shell
-```
-
-4. Make poetry.lock is up to date:
+3. Make poetry.lock is up to date:
 
 ```shell
     poetry update
 ```
 
-5. Install modules from poetry.lock:
+4. Install modules from poetry.lock and create virtual env:
 
 ```shell
     poetry install
 ```
 
-6. Set environment variables for development:
+7. Set environment variables for development:
 
 ### Google Cloud Platform (`vestapol.destinations.GoogleCloudPlatform`)
 
@@ -47,17 +41,17 @@ vestapol is a Python package that loads data from the web and deploys a correspo
 - `GBQ_DATASET_LOCATION`: the BigQuery dataset location (e.g. `US`)
 - `GOOGLE_APPLICATION_CREDENTIALS=`: location of the GCS service account keyfile (e.g. `~/inq-warehouse-f0962a57089e-inf.json`)
 
-7. run tests in clean poetry environment:
+8. run tests in clean poetry environment:
 
 ```shell
-    tox envtest
+    tox
 ```
 
 ## Usage
 
 ```python
-from vestapol.web_resources import CSVResource
-from vestapol.destinations import GoogleCloudPlatform
+from vestapol.web_resources.csv_resource import CSVResource
+from vestapol.destinations.gcp_destination import GoogleCloudPlatform
 
 
 nyt_covid_data_2022 = CSVResource(
