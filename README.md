@@ -18,19 +18,37 @@ vestapol is a Python package that loads data from the web and deploys a correspo
     source $HOME/.poetry/env
 ```
 
-3. Make poetry.lock is up to date:
+3. Check that you have a Python version compatible with requirements for this project. See `python` under `[tool.poetry.dependencies]` in `pyproject.toml` for current dependencies. If you are not currently using Pyenv to manange Python installation, refer to our [Documentation](https://inquirer.atlassian.net/wiki/spaces/KB/pages/1763704858/How+to+manage+Python+installations+on+your+machine+with+Pyenv). Follow instructions there to install an appropriate version.
+
+```shell
+    pyenv versions
+```
+
+4. Check futher that you have Python versions installed for all that are tested by tox. See `envlist` under `[tox]` in `tox.ini` for current dependencies.
+
+```shell
+    pyenv install <version>
+```
+
+5. Create poetry virtualenv:
+
+```shell
+    poetry shell
+```
+
+6. Make sure poetry.lock is up to date:
 
 ```shell
     poetry update
 ```
 
-4. Install modules from poetry.lock and create virtual env:
+7. Install vestapol in poetry virtualenv:
 
 ```shell
     poetry install
 ```
 
-7. Set environment variables for development:
+8. Set environment variables for development:
 
 ### Google Cloud Platform (`vestapol.destinations.GoogleCloudPlatform`)
 
