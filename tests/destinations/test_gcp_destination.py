@@ -1,6 +1,6 @@
 from unittest.mock import MagicMock, patch
 
-from vestapol.destinations import GoogleCloudPlatform
+from vestapol.destinations.gcp_destination import GoogleCloudPlatform
 
 
 @patch("vestapol.destinations.gcp_destination.external_tables.create_gcp_table")

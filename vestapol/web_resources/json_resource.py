@@ -1,5 +1,4 @@
 from abc import abstractmethod
-import re
 from typing import List
 from vestapol.writers import json_writer
 from vestapol.web_resources import base_resource
