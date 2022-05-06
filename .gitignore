@@ -1,9 +1,6 @@
 # Folder for local development assets
 data/
 
-# VSCode
-.vscode/
-
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
