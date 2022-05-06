@@ -36,11 +36,7 @@ vestapol is a Python package that loads data from the web and deploys a correspo
     poetry shell
 ```
 
-6. Make sure poetry.lock is up to date:
-
-```shell
-    poetry update
-```
+6. If you are using VSCode: the `.vscode` directory in this repo contains a setting that will tell VSCode to look at poetry to find Python interpreters. You may need to restart VSCode for this setting to take effect. Once set, you can select the poetry environment from the list of interpreters by bringing up the Command Palette (Cmd+Shift+P) and searching for "Python: Select Interpreter".
 
 7. Install vestapol in poetry virtualenv:
 
@@ -48,7 +44,13 @@ vestapol is a Python package that loads data from the web and deploys a correspo
     poetry install
 ```
 
-8. Set environment variables for development:
+8. Make sure poetry.lock is up to date:
+
+```shell
+    poetry update
+```
+
+9. Set environment variables for development:
 
 ### Google Cloud Platform (`vestapol.destinations.GoogleCloudPlatform`)
 
