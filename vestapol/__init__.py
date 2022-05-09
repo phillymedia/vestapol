@@ -1,9 +1,8 @@
-from vestapol import web_resources
-from vestapol import destinations
-
 import logging
 
-logging.basicConfig(level=logging.DEBUG, format='%(asctime)s %(name)s %(levelname)s:%(message)s')
+logging.basicConfig(
+    level=logging.DEBUG, format="%(asctime)s %(name)s %(levelname)s:%(message)s"
+)
 
 try:
     from dotenv import load_dotenv

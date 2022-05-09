@@ -1,32 +1,59 @@
 # vestapol
+
 vestapol is a Python package that loads data from the web and deploys a corresponding external table definition, so that the data can be queried using standard SQL.
 
 ["Vestapol"](https://www.youtube.com/watch?v=SKQG-JGyn7U) is an open D Major tuning for the guitar. It is named after a 19th-century composition distributed in some of the earliest instructional guides for guitar.
 
 ## Setup
 
-1. Install poetry: 
+1. Install poetry:
+
 ```shell
     curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
 ```
 
 2. Add poetry to path:
+
 ```shell
     source $HOME/.poetry/env
 ```
 
-3. Create poetry virtual env:
+3. Check that you have a Python version compatible with requirements for this project. See `python` under `[tool.poetry.dependencies]` in `pyproject.toml` for current dependencies. If you are not currently using Pyenv to manange Python installation, refer to our [Documentation](https://inquirer.atlassian.net/wiki/spaces/KB/pages/1763704858/How+to+manage+Python+installations+on+your+machine+with+Pyenv). Follow instructions there to install an appropriate version.
+
+```shell
+    pyenv versions
+```
+
+4. Check futher that you have Python versions installed for all that are tested by tox. See `envlist` under `[tox]` in `tox.ini` for current dependencies.
+
+```shell
+    pyenv install <version>
+```
+
+5. Create poetry virtualenv:
+
 ```shell
     poetry shell
 ```
 
-4. Install modules from poetry.lock:
+6. If you are using VSCode: the `.vscode` directory in this repo contains a setting that will tell VSCode to look at poetry to find Python interpreters. You may need to restart VSCode for this setting to take effect. Once set, you can select the poetry environment from the list of interpreters by bringing up the Command Palette (Cmd+Shift+P) and searching for "Python: Select Interpreter".
+
+7. Install vestapol in poetry virtualenv:
+
 ```shell
     poetry install
 ```
-5. Set environment variables for development:
- 
+
+8. Make sure poetry.lock is up to date:
+
+```shell
+    poetry update
+```
+
+9. Set environment variables for development:
+
 ### Google Cloud Platform (`vestapol.destinations.GoogleCloudPlatform`)
+
 - `GCS_BUCKET_NAME`: the Google Cloud Storage bucket where data is loaded (e.g. `inq-warehouse-waligob`)
 - `GCS_ROOT_PREFIX`: the GCS prefix where data is loaded (e.g. `data_catalog`)
 - `GBQ_PROJECT_ID`: the BigQuery project identifier (e.g. `inq-warehouse`)
@@ -34,11 +61,17 @@ vestapol is a Python package that loads data from the web and deploys a correspo
 - `GBQ_DATASET_LOCATION`: the BigQuery dataset location (e.g. `US`)
 - `GOOGLE_APPLICATION_CREDENTIALS=`: location of the GCS service account keyfile (e.g. `~/inq-warehouse-f0962a57089e-inf.json`)
 
+8. run tests in clean poetry environment:
+
+```shell
+    tox
+```
 
 ## Usage
+
 ```python
-from vestapol.web_resources import CSVResource
-from vestapol.destinations import GoogleCloudPlatform
+from vestapol.web_resources.csv_resource import CSVResource
+from vestapol.destinations.gcp_destination import GoogleCloudPlatform
 
 
 nyt_covid_data_2022 = CSVResource(
