@@ -101,3 +101,31 @@ query_job = client.query(query)
 for row in query_job.result():
     print(row)
 ```
+
+## Publishing to TestPyPi
+
+Instructions for pushing new versions of `vestapol` to TestPyPi:
+
+1. Update `CHANGELOG.md`. Include Additions, Fixes, and Changes.
+
+2. Update `version` in `pyproject.toml` following [Semantic Versioning](http://semver.org/).
+
+3. Add Test PyPI as an alternate package repository to poetry:
+
+```shell
+    poetry config repositories.testpypi 'https://test.pypi.org/legacy/'
+```
+
+4. Configure PyPi to use authenticate using an API token.
+
+```shell
+    poetry config http-basic.testpypi __token__ <the token value, including the pypi- prefix>
+```
+
+5. Publish repo with poetry:
+
+```shell
+    poetry publish --repository=testpypi --build
+```
+
+6. Go to https://test.pypi.org/project/vestapol/ to make sure that it worked.
