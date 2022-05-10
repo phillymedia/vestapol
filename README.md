@@ -116,7 +116,7 @@ Instructions for pushing new versions of `vestapol` to TestPyPi:
     poetry config repositories.testpypi 'https://test.pypi.org/legacy/'
 ```
 
-4. Configure PyPi to use authenticate using an API token.
+4. Configure PyPi to authenticate using an API token.
 
 ```shell
     poetry config http-basic.testpypi __token__ <the token value, including the pypi- prefix>
