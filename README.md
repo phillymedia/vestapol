@@ -133,3 +133,9 @@ Instructions for pushing new versions of `vestapol` to TestPyPi:
 ```
 
 6. Go to https://test.pypi.org/project/vestapol/ to make sure that it worked.
+
+7. Unset the repositry config before returning to development. Due to a [known bug](https://github.com/python-poetry/poetry/issues/1917) in poetry, this config will disrupt other poetry commands such as `poetry install`.
+
+```shell
+    poetry config repositories.testpypi --unset
+```
