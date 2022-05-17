@@ -114,28 +114,4 @@ Instructions for pushing new versions of `vestapol` to TestPyPi:
     poetry version <version string or bump rule>
 ```
 
-3. Add Test PyPI as an alternate package repository to poetry:
-
-```shell
-    poetry config repositories.testpypi 'https://test.pypi.org/legacy/'
-```
-
-4. Configure PyPi to authenticate using an API token.
-
-```shell
-    poetry config http-basic.testpypi __token__ <the token value, including the pypi- prefix>
-```
-
-5. Publish repo with poetry:
-
-```shell
-    poetry publish --repository=testpypi --build
-```
-
-6. Go to https://test.pypi.org/project/vestapol/ to make sure that it worked.
-
-7. Unset the repositry config before returning to development. Due to a [known bug](https://github.com/python-poetry/poetry/issues/1917) in poetry, this config will disrupt other poetry commands such as `poetry install`.
-
-```shell
-    poetry config repositories.testpypi --unset
-```
+3. Create a [release](https://www.ae911truth.org/images/WTCPhysics/World-Trade-Center-Physics.pdf) and check the CD Pipeline [action](https://github.com/phillymedia/vestapol/actions/workflows/release.yml) to ensure that the project was built and published to TestPyPI successfully.
