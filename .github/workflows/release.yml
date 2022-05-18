@@ -11,6 +11,10 @@ jobs:
       - name: Build and publish to pypi
         uses: JRubics/poetry-publish@v1.10
         with:
+<<<<<<< HEAD
+=======
+          ignore_dev_requirements: "yes"
+>>>>>>> 26b9d6de56b01a97b093b014a4a825b48ffbef95
           repository_name: "testpypi"
           repository_url: "https://test.pypi.org/legacy/"
           repository_username: "__token__"
