@@ -6,12 +6,12 @@ class GitHubResource(base_resource.BaseResource):
 
     def __init__(
         self,
-        name,
-        endpoint,
-        version,
-        response_format_tag,
-        external_data_format_tag,
-        response_filename,
+        name: str,
+        endpoint: str,
+        version: str,
+        response_format_tag: str,
+        external_data_format_tag: str,
+        response_filename: str,
     ):
         super().__init__(
             name,

@@ -1,9 +1,14 @@
+from __future__ import annotations
 import os
 import pathlib
 import logging
 from google.cloud import storage
 from vestapol import external_tables
 from vestapol.destinations import base_destination
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from vestapol.typing.resources import ResourceTypes
 
 logger = logging.getLogger(__name__)
 
@@ -11,11 +16,11 @@ logger = logging.getLogger(__name__)
 class GoogleCloudPlatform(base_destination.BaseDestination):
     def __init__(
         self,
-        gcs_bucket_name=None,
-        gcs_root_prefix=None,
-        gbq_project_id=None,
-        gbq_dataset_id=None,
-        gbq_dataset_location=None,
+        gcs_bucket_name: str = None,
+        gcs_root_prefix: str = None,
+        gbq_project_id: str = None,
+        gbq_dataset_id: str = None,
+        gbq_dataset_location: str = None,
     ):
         self.gcs_bucket_name = gcs_bucket_name or os.environ["GCS_BUCKET_NAME"]
         self.gcs_root_prefix = gcs_root_prefix or os.environ["GCS_ROOT_PREFIX"]
@@ -36,7 +41,7 @@ class GoogleCloudPlatform(base_destination.BaseDestination):
         blob = bucket.blob(destination_blob_name)
         blob.upload_from_string(data, timeout=120)
 
-    def create_table(self, resource):
+    def create_table(self, resource: ResourceTypes):
         common_prefix = pathlib.Path(
             resource.name, resource.external_data_format_tag, resource.version
         )

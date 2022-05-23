@@ -1,5 +1,10 @@
+from __future__ import annotations
 from vestapol.writers import text_writer, json_writer
 from vestapol.web_resources import base_resource
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from vestapol.typing.destinations import DestinationTypes
 
 
 class CSVResource(base_resource.BaseResource):
@@ -11,18 +16,19 @@ class CSVResource(base_resource.BaseResource):
 
     def __init__(
         self,
-        name,
-        base_url,
-        endpoint,
-        version,
-        has_header,
-        query_params=None,
-        request_headers=None,
+        name: str,
+        base_url: str,
+        endpoint: str,
+        version: str,
+        has_header: bool,
+        query_params: dict = None,
+        request_headers: dict = None,
     ):
         self.name = name
         self.base_url = base_url
         self.endpoint = endpoint
         self.version = version
+        self.has_header = has_header
         self.query_params = query_params
         self.request_headers = request_headers
 
@@ -38,21 +44,19 @@ class CSVResource(base_resource.BaseResource):
             self.request_headers,
         )
 
-        self.has_header = has_header or self.has_header
-
-    def load(self, destination):
+    def load(self, destination: DestinationTypes) -> str:
         data = self.request_data()
         self.write_data(data, destination)
         if self.has_header:
             self.write_header(data, destination)
         return data
 
-    def write_data(self, data, destination):
+    def write_data(self, data: str, destination: DestinationTypes):
         text_writer.write_text(
             data, self.response_target_prefix / self.response_filename, destination
         )
 
-    def write_header(self, data, destination):
+    def write_header(self, data: str, destination: DestinationTypes):
         header_row = data.split("\n")[0]
         self.header_data = {
             "columns": [

@@ -1,13 +1,18 @@
+from __future__ import annotations
 from abc import ABC, abstractmethod
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from vestapol.typing.resources import ResourceTypes
 
 
 class BaseDestination(ABC):
     @abstractmethod
-    def write_data(self, data: str, pathname: str):
+    def write_data(self, data, pathname):
         pass
 
     @abstractmethod
-    def create_table(self, resource):
+    def create_table(self, resource: ResourceTypes):
         """
         Implementations of method should return the fully-qualified table name
         of the created table
