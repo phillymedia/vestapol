@@ -3,7 +3,7 @@ from abc import ABC, abstractmethod
 from pendulum import DateTime
 import pathlib
 from vestapol.api import api
-from typing import List, Dict, Union, TYPE_CHECKING
+from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from vestapol.typing.destinations import DestinationTypes

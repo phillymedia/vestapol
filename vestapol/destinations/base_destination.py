@@ -8,7 +8,7 @@ if TYPE_CHECKING:
 
 class BaseDestination(ABC):
     @abstractmethod
-    def write_data(self, data, pathname):
+    def write_data(self, data: str, pathname: str):
         pass
 
     @abstractmethod

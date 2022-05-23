@@ -1,5 +1,4 @@
 import json
-from lib2to3.pytree import Base
 import logging
 from vestapol.typing.destinations import DestinationTypes
 from typing import List, Dict
