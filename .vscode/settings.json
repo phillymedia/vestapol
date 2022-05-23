@@ -1,2 +1,5 @@
-{"python.venvPath": "~/Library/Caches/pypoetry/virtualenvs"
+{
+  "python.venvPath": "~/Library/Caches/pypoetry/virtualenvs",
+  "python.linting.mypyEnabled": true,
+  "python.linting.enabled": true
 }
