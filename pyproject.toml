@@ -19,7 +19,10 @@ pendulum = "^2.1"
 python-dotenv = "0.19.2"
 pytest = "6.2.5"
 tox = "3.25.0"
+mypy = "^0.950"
+types-requests = "^2.27.26"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
