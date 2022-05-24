@@ -2,7 +2,7 @@ from __future__ import annotations
 from abc import abstractmethod
 from vestapol.writers import json_writer
 from vestapol.web_resources import base_resource
-from typing import Dict, List, TYPE_CHECKING
+from typing import Dict, List, Tuple, TYPE_CHECKING
 
 if TYPE_CHECKING:
     from vestapol.typing.destinations import DestinationTypes
