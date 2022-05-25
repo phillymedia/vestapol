@@ -7,7 +7,9 @@ JSON_FORMAT_TAG = "json"
 CSV_FORMAT_TAG = "csv"
 
 
-def get_api_data(url, response_format_tag, query_params, request_headers):
+def get_api_data(
+    url: str, response_format_tag: str, query_params: dict, request_headers: dict
+):
     logger.debug(f"GET {url}")
 
     try:

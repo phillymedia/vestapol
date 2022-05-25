@@ -1,4 +1,9 @@
+from __future__ import annotations
 from abc import ABC, abstractmethod
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from vestapol.web_resources import ResourceTypes
 
 
 class BaseDestination(ABC):
@@ -7,7 +12,7 @@ class BaseDestination(ABC):
         pass
 
     @abstractmethod
-    def create_table(self, resource):
+    def create_table(self, resource: ResourceTypes):
         """
         Implementations of method should return the fully-qualified table name
         of the created table

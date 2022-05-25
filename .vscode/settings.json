@@ -1,4 +1,6 @@
 {
-    "python.venvPath": "~/Library/Caches/pypoetry/virtualenvs",
-    "python.formatting.provider": "black"
+  "python.venvPath": "~/Library/Caches/pypoetry/virtualenvs",
+  "python.formatting.provider": "black",
+  "python.linting.mypyEnabled": true,
+  "python.linting.enabled": true
 }
