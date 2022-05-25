@@ -1,7 +1,10 @@
 from __future__ import annotations
-from vestapol.writers import text_writer, json_writer
-from vestapol.web_resources import base_resource
+
 from typing import TYPE_CHECKING
+
+from vestapol.web_resources import base_resource
+from vestapol.writers import json_writer
+from vestapol.writers import text_writer
 
 if TYPE_CHECKING:
     from vestapol.destinations import DestinationTypes

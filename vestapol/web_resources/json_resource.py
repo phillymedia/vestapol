@@ -1,8 +1,13 @@
 from __future__ import annotations
+
 from abc import abstractmethod
-from vestapol.writers import json_writer
+from typing import Dict
+from typing import List
+from typing import Tuple
+from typing import TYPE_CHECKING
+
 from vestapol.web_resources import base_resource
-from typing import Dict, List, Tuple, TYPE_CHECKING
+from vestapol.writers import json_writer
 
 if TYPE_CHECKING:
     from vestapol.destinations import DestinationTypes
