@@ -4,7 +4,7 @@ from vestapol.web_resources import base_resource
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from vestapol.typing.destinations import DestinationTypes
+    from vestapol.destinations import DestinationTypes
 
 
 class CSVResource(base_resource.BaseResource):

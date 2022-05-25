@@ -3,7 +3,7 @@ from abc import ABC, abstractmethod
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from vestapol.typing.resources import ResourceTypes
+    from vestapol.web_resources import ResourceTypes
 
 
 class BaseDestination(ABC):

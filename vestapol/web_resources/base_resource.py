@@ -6,7 +6,7 @@ from vestapol.api import api
 from typing import List, Tuple, TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from vestapol.typing.destinations import DestinationTypes
+    from vestapol.destinations import DestinationTypes
 
 
 class BaseResource(ABC):

@@ -5,7 +5,7 @@ from vestapol.web_resources import base_resource
 from typing import Dict, List, Tuple, TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from vestapol.typing.destinations import DestinationTypes
+    from vestapol.destinations import DestinationTypes
 
 
 class JSONResource(base_resource.BaseResource):

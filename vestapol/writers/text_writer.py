@@ -1,4 +1,4 @@
-from vestapol.typing.destinations import DestinationTypes
+from vestapol.destinations import DestinationTypes
 
 
 def write_text(data: str, pathname: str, destination: DestinationTypes):
