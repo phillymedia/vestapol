@@ -40,45 +40,12 @@ for row in query_job.result():
 ```
 
 
-## Setup
+## Prerequisites
 
-### Prerequisites
+Installation of this project requires [Poetry](https://python-poetry.org/docs/) and Python version 3.8+.
 
-1. Install poetry:
 
-```shell
-    curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
-```
-
-2. Add poetry to path:
-
-```shell
-    source $HOME/.poetry/env
-```
-
-3. Check that you have a Python version compatible with requirements for this project. See `python` under `[tool.poetry.dependencies]` in `pyproject.toml` for current dependencies. If you are not currently using Pyenv to manange Python installation, refer to our [Documentation](https://inquirer.atlassian.net/wiki/spaces/KB/pages/1763704858/How+to+manage+Python+installations+on+your+machine+with+Pyenv). Follow instructions there to install an appropriate version.
-
-```shell
-    pyenv versions
-```
-
-4. Check futher that you have Python versions installed for all that are tested by tox. See `envlist` under `[tox]` in `tox.ini` for current dependencies.
-
-```shell
-    pyenv install <version>
-```
-
-5. Create poetry virtualenv:
-
-```shell
-    poetry shell
-```
-
-6. If you are using VSCode: the `.vscode` directory in this repo contains a setting that will tell VSCode to look at poetry to find Python interpreters. You may need to restart VSCode for this setting to take effect. Once set, you can select the poetry environment from the list of interpreters by bringing up the Command Palette (Cmd+Shift+P) and searching for "Python: Select Interpreter".
-
-### Development
-
-#### Installation
+## Installation
 
 Install vestapol and its dependencies by running:
 
@@ -86,17 +53,7 @@ Install vestapol and its dependencies by running:
 poetry install
 ```
 
-#### Managing Dependencies
-
-When editing the dependencies for `vestapol`, you sync the dependencies from `pyproject.toml` to `poetry.lock` by running:
-
-```shell
-poetry lock
-```
-
-Make sure to commit any changes to `poetry.lock` when running this command.
-
-#### Testing
+## Testing
 
 Run tests with the following command:
 
@@ -104,15 +61,7 @@ Run tests with the following command:
 poetry run pytest
 ```
 
-#### `pre-commit` Hooks
-
-To ensure quality code is pushed to our remote repository, we have a series of [pre-commit](https://pre-commit.com/) hooks that run upon each commit. To install these hooks, run
-
-```shell
-poetry run pre-commit install
-```
-
-#### Environment Variables
+## Environment Variables
 
 - `GCS_BUCKET_NAME`: the Google Cloud Storage bucket where data is loaded (e.g. `inq-warehouse-waligob`)
 - `GCS_ROOT_PREFIX`: the GCS prefix where data is loaded (e.g. `data_catalog`)
@@ -122,7 +71,7 @@ poetry run pre-commit install
 - `GOOGLE_APPLICATION_CREDENTIALS=`: location of the GCS service account keyfile (e.g. `~/inq-warehouse-f0962a57089e-inf.json`)
 
 
-#### Publishing to TestPyPi
+## Publishing to TestPyPi
 
 Instructions for pushing new versions of `vestapol` to TestPyPi:
 
