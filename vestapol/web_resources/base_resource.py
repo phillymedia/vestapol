@@ -3,7 +3,7 @@ from abc import ABC, abstractmethod
 from pendulum import DateTime
 import pathlib
 from vestapol.api import api
-from typing import TYPE_CHECKING
+from typing import List, Tuple, TYPE_CHECKING
 
 if TYPE_CHECKING:
     from vestapol.typing.destinations import DestinationTypes
@@ -65,7 +65,7 @@ class BaseResource(ABC):
         return f'requested_at={self.requested_at.strftime("%Y-%m-%d %H:%M:%S")}'
 
     @staticmethod
-    def get_hive_path(data_path: str):
+    def get_hive_path(data_path: List[Tuple[str, str]]):
 
         prefix_components = []
         for x in data_path:

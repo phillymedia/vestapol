@@ -53,7 +53,7 @@ class JSONResource(base_resource.BaseResource):
         self,
         data: List[Dict],
         destination: DestinationTypes,
-        data_path: List[Tuple[str,  str]] = None,
+        data_path: List[Tuple[str, str]] = None,
     ):
         if not isinstance(data, list):
             raise TypeError(f"Expected a list, received {type(data)}")
@@ -62,7 +62,10 @@ class JSONResource(base_resource.BaseResource):
         json_writer.write_jsonl(data=data, pathname=pathname, destination=destination)
 
     def write_dict(
-        self, data: Dict, destination: DestinationTypes, data_path: str = None
+        self,
+        data: Dict,
+        destination: DestinationTypes,
+        data_path: List[Tuple[str, str]] = None,
     ):
         if not isinstance(data, dict):
             raise TypeError(f"Expected a dict, received {type(data)}")
@@ -70,7 +73,7 @@ class JSONResource(base_resource.BaseResource):
         pathname = self.get_pathname(data_path)
         json_writer.write_json(data=data, pathname=pathname, destination=destination)
 
-    def get_pathname(self, data_path: str = None):
+    def get_pathname(self, data_path: List[Tuple[str, str]] = None):
         jsonl_target_prefix = self.get_response_root(self.external_data_format_tag)
 
         if data_path:
