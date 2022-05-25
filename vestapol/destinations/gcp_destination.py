@@ -1,8 +1,10 @@
 from __future__ import annotations
+import logging
 import os
 import pathlib
-import logging
+
 from google.cloud import storage
+
 from vestapol import external_tables
 from vestapol.destinations import base_destination
 from typing import TYPE_CHECKING

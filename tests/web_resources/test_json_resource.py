@@ -1,7 +1,9 @@
-import pytest
-from unittest.mock import patch, MagicMock
-from pendulum import DateTime
 from pathlib import Path
+from unittest.mock import MagicMock
+from unittest.mock import patch
+
+import pytest
+from pendulum import DateTime
 
 from vestapol.web_resources import json_resource
 
