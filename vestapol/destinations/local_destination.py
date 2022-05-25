@@ -1,8 +1,10 @@
 from __future__ import annotations
+
 import logging
 import pathlib
-from vestapol.destinations import base_destination
 from typing import TYPE_CHECKING
+
+from vestapol.destinations import base_destination
 
 if TYPE_CHECKING:
     from vestapol.web_resources import ResourceTypes

@@ -1,7 +1,9 @@
 import json
 import logging
+from typing import Dict
+from typing import List
+
 from vestapol.destinations import DestinationTypes
-from typing import List, Dict
 
 logger = logging.getLogger(__name__)
 
