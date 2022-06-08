@@ -71,9 +71,9 @@ poetry run pytest
 - `GOOGLE_APPLICATION_CREDENTIALS=`: location of the GCS service account keyfile (e.g. `~/inq-warehouse-f0962a57089e-inf.json`)
 
 
-## Publishing to TestPyPi
+## Publishing to PyPI
 
-Instructions for pushing new versions of `vestapol` to TestPyPi:
+Instructions for pushing new versions of `vestapol` to PyPI:
 
 1. Update `CHANGELOG.md`. Include Additions, Fixes, and Changes.
 
@@ -83,4 +83,4 @@ Instructions for pushing new versions of `vestapol` to TestPyPi:
     poetry version <version string or bump rule>
 ```
 
-3. Create a [release](https://www.ae911truth.org/images/WTCPhysics/World-Trade-Center-Physics.pdf) and check the CD Pipeline [action](https://github.com/phillymedia/vestapol/actions/workflows/release.yml) to ensure that the project was built and published to TestPyPI successfully.
+3. Create a [release](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository#creating-a-release) and check the CD Pipeline [action](https://github.com/phillymedia/vestapol/actions/workflows/release.yml) to ensure that the project was built and published to PyPI successfully.
