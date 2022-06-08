@@ -13,4 +13,4 @@ jobs:
         with:
           ignore_dev_requirements: "yes"
           repository_username: "__token__"
-          repository_password: ${{ secrets.PYPI_PASSWORD }}
+          repository_password: ${{ secrets.PYPI_API_TOKEN }}
