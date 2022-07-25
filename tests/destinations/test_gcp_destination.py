@@ -1,3 +1,4 @@
+from google.cloud import bigquery
 from unittest.mock import MagicMock
 from unittest.mock import patch
 
@@ -7,7 +8,13 @@ from vestapol.destinations.gcp_destination import GoogleCloudPlatform
 @patch("vestapol.destinations.gcp_destination.external_tables.create_gcp_table")
 def test_create_table(mock):
     resource = MagicMock(
-        external_data_format_tag="dum", version="v999.9", response_filename="dum.my"
+        external_data_format_tag="dum",
+        version="v999.9",
+        response_filename="dum.my",
+        manual_schema=[
+            {"name": "test1", "field_type": "INTEGER"},
+            {"name": "test2", "field_type": "STRING"},
+        ],
     )
 
     # Can't set the "name" attribute when instantiating a MagicMock
@@ -29,4 +36,8 @@ def test_create_table(mock):
         "dummy_resource",
         "gs://bucket_name/root_prefix/dummy_resource/dum/v999.9/",
         ["gs://bucket_name/root_prefix/dummy_resource/dum/v999.9/*/dum.my"],
+        [
+            bigquery.SchemaField(name="test1", field_type="INTEGER"),
+            bigquery.SchemaField(name="test2", field_type="STRING"),
+        ],
     )

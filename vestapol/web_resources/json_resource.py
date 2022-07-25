@@ -1,10 +1,7 @@
 from __future__ import annotations
 
 from abc import abstractmethod
-from typing import Dict
-from typing import List
-from typing import Tuple
-from typing import TYPE_CHECKING
+from typing import Dict, List, Tuple, TYPE_CHECKING
 
 from vestapol.web_resources import base_resource
 from vestapol.writers import json_writer
@@ -19,7 +16,14 @@ class JSONResource(base_resource.BaseResource):
     response_filename = "data.json"
 
     def __init__(
-        self, name, base_url, endpoint, version, query_params=None, request_headers=None
+        self,
+        name,
+        base_url,
+        endpoint,
+        version,
+        query_params=None,
+        request_headers=None,
+        manual_schema=None,
     ):
         self.name: str = name
         self.base_url: str = base_url
@@ -27,6 +31,7 @@ class JSONResource(base_resource.BaseResource):
         self.version: str = version
         self.query_params: dict = query_params
         self.request_headers: dict = request_headers
+        self.manual_schema: List[Dict] = manual_schema
         super().__init__(
             self.name,
             self.base_url,
@@ -37,6 +42,7 @@ class JSONResource(base_resource.BaseResource):
             self.response_filename,
             self.query_params,
             self.request_headers,
+            self.manual_schema,
         )
 
     def load(self, destination: DestinationTypes):

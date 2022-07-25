@@ -1,19 +1,32 @@
 from google.cloud import bigquery
+from typing import List, Optional
 
 
-def get_dataset(client, project_id, dataset_id, dataset_location):
+def get_dataset(
+    client: bigquery.Client, project_id: str, dataset_id: str, dataset_location: str
+):
     dataset = bigquery.Dataset(f"{project_id}.{dataset_id}")
     dataset.location = dataset_location
     dataset = client.create_dataset(dataset, exists_ok=True, timeout=30)
     return dataset
 
 
-def get_external_data_configuration(source_uri_prefix_fq, source_uris, source_format):
+def get_external_data_configuration(
+    source_uri_prefix_fq: str,
+    source_uris: List[str],
+    source_format: str,
+    table_schema: Optional[List[bigquery.SchemaField]] = None,
+):
 
     bq_source_format = {"jsonl": "NEWLINE_DELIMITED_JSON", "csv": "CSV"}[source_format]
 
     external_config = bigquery.ExternalConfig(bq_source_format)
-    external_config.autodetect = True
+
+    # autodetect schema unless a manually defined one is provided
+    if table_schema is not None:
+        external_config.schema = table_schema
+    else:
+        external_config.autodetect = True
 
     hive_partitioning_opts = bigquery.external_config.HivePartitioningOptions()
     hive_partitioning_opts.mode = "AUTO"
@@ -30,13 +43,14 @@ def get_external_data_configuration(source_uri_prefix_fq, source_uris, source_fo
 
 
 def create_gcp_table(
-    source_format,
-    project_id,
-    dataset_id,
-    dataset_location,
-    table_id,
-    source_uri_prefix_fq,
-    source_uris,
+    source_format: str,
+    project_id: str,
+    dataset_id: str,
+    dataset_location: str,
+    table_id: str,
+    source_uri_prefix_fq: str,
+    source_uris: List[str],
+    table_schema: Optional[List[bigquery.SchemaField]],
 ):
 
     client = bigquery.Client()
