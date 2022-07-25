@@ -12,7 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Resources and Destinations must now be imported using their full path.
 - Tests can now be run with a single command. See README for details.
 
-## [0.0.10]
+## [0.0.10] - 2022-05-24
 
 ### Added
 
