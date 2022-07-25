@@ -11,3 +11,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 - Resources and Destinations must now be imported using their full path.
 - Tests can now be run with a single command. See README for details.
+
+## [0.0.10]
+
+### Added
+
+- Added pre-commit and pre-commit hooks for Black
+
+## [0.0.11] - 2022-07-25
+
+### Added
+
+- Added option to pass a manual schema to GCP Destination from a JSON Resource
