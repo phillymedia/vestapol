@@ -3,6 +3,7 @@ from __future__ import annotations
 import logging
 import os
 import pathlib
+import re
 
 from google.cloud import storage
 from typing import TYPE_CHECKING
@@ -59,7 +60,11 @@ class GoogleCloudPlatform(base_destination.BaseDestination):
         tablename = resource.name
 
         if resource.manual_schema is not None:
-            table_schema = [bigquery.SchemaField(**f) for f in resource.manual_schema]
+            table_schema = []
+            for s in resource.manual_schema:
+                if "fields" in s.keys():
+                    s["fields"] = [bigquery.SchemaField(**f) for f in s["fields"]]
+                table_schema.append(bigquery.SchemaField(**s))
         else:
             table_schema = None
 

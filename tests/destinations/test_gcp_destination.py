@@ -14,6 +14,14 @@ def test_create_table(mock):
         manual_schema=[
             {"name": "test1", "field_type": "INTEGER"},
             {"name": "test2", "field_type": "STRING"},
+            {
+                "name": "test3",
+                "field_type": "RECORD",
+                "fields": [
+                    {"name": "name", "field_type": "FLOAT64"},
+                    {"name": "id", "field_type": "INT64"},
+                ],
+            },
         ],
     )
 
@@ -37,7 +45,15 @@ def test_create_table(mock):
         "gs://bucket_name/root_prefix/dummy_resource/dum/v999.9/",
         ["gs://bucket_name/root_prefix/dummy_resource/dum/v999.9/*/dum.my"],
         [
-            bigquery.SchemaField(name="test1", field_type="INTEGER"),
-            bigquery.SchemaField(name="test2", field_type="STRING"),
+            bigquery.SchemaField("test1", "INTEGER"),
+            bigquery.SchemaField("test2", "STRING"),
+            bigquery.SchemaField(
+                "test3",
+                "RECORD",
+                fields=[
+                    bigquery.SchemaField("name", "FLOAT64"),
+                    bigquery.SchemaField("id", "INT64"),
+                ],
+            ),
         ],
     )
