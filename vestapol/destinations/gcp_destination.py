@@ -3,7 +3,6 @@ from __future__ import annotations
 import logging
 import os
 import pathlib
-import re
 
 from google.cloud import storage
 from typing import TYPE_CHECKING
