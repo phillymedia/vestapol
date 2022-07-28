@@ -27,6 +27,7 @@ class BaseResource(ABC):
         response_filename: str = "data",
         query_params: dict = None,
         request_headers: dict = None,
+        manual_schema=None,
     ):
         self.name = name
         self.base_url = base_url
@@ -37,6 +38,7 @@ class BaseResource(ABC):
         self.response_filename = response_filename
         self.query_params = query_params
         self.request_headers = request_headers
+        self.manual_schema = manual_schema
         self.requested_at = DateTime.utcnow().replace(microsecond=0)
 
     def load(self, destination: DestinationTypes):
