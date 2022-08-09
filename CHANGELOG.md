@@ -23,3 +23,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 
 - Added option to pass a manual schema to GCP Destination from a JSON Resource
+
+## [0.0.12] - 2022-08-09
+
+### Added
+
+- Bug fix for manual schema option
