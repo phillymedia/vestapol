@@ -61,7 +61,7 @@ def create_gcp_table(
     table = bigquery.Table(dataset.table(table_id))
 
     table.external_data_configuration = get_external_data_configuration(
-        source_uri_prefix_fq, source_uris, source_format
+        source_uri_prefix_fq, source_uris, source_format, table_schema
     )
 
     # Create a permanent table linked to the GCS file
