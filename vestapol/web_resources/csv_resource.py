@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from typing import Dict
 from typing import List
+from typing import Tuple
 from typing import TYPE_CHECKING
 
 from vestapol.web_resources import base_resource
@@ -59,10 +60,17 @@ class CSVResource(base_resource.BaseResource):
             self.write_header(data, destination)
         return data
 
-    def write_data(self, data: str, destination: DestinationTypes):
-        text_writer.write_text(
-            data, self.response_target_prefix / self.response_filename, destination
-        )
+    def write_data(self, data, destination: DestinationTypes):
+        self.write_string(data, destination, data_path=None)
+
+    def write_string(
+        self,
+        data: str,
+        destination: DestinationTypes,
+        data_path: List[Tuple[str, str]] = None,
+    ):
+        pathname = self.get_pathname(data_path)
+        text_writer.write_text(data, pathname, destination)
 
     def write_header(self, data: str, destination: DestinationTypes):
         header_row = data.split("\n")[0]
