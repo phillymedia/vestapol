@@ -22,11 +22,23 @@ def mock_csv_resource():
     return mock_csv_resource
 
 
-@patch("vestapol.writers.text_writer.write_text")
+@patch("vestapol.web_resources.csv_resource.CSVResource.write_data")
 def test_write_data(mock, mock_csv_resource):
     data = "a string"
     destination = MagicMock()
     mock_csv_resource.write_data(data, destination)
+    mock.assert_called_with(
+        data,
+        destination,
+    )
+
+
+@patch("vestapol.writers.text_writer.write_text")
+def test_write_string(mock, mock_csv_resource):
+    data = "a string"
+    destination = MagicMock()
+    data_path = [("key_a", "value_a"), ("key_b", "value_b")]
+    mock_csv_resource.write_string(data, destination, data_path)
     mock.assert_called_with(
         data,
         Path(
@@ -34,6 +46,8 @@ def test_write_data(mock, mock_csv_resource):
             "csv",
             "v99.9",
             "requested_at=1970-01-01 00:00:00",
+            "key_a=value_a",
+            "key_b=value_b",
             "data.csv",
         ),
         destination,
