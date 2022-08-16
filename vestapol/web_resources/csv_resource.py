@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from typing import Dict
+from typing import List
 from typing import TYPE_CHECKING
 
 from vestapol.web_resources import base_resource
@@ -26,6 +28,7 @@ class CSVResource(base_resource.BaseResource):
         has_header: bool,
         query_params: dict = None,
         request_headers: dict = None,
+        manual_schema: List[Dict] = None,
     ):
         self.name = name
         self.base_url = base_url
@@ -34,6 +37,7 @@ class CSVResource(base_resource.BaseResource):
         self.has_header = has_header
         self.query_params = query_params
         self.request_headers = request_headers
+        self.manual_schema = manual_schema
 
         super().__init__(
             self.name,
@@ -45,6 +49,7 @@ class CSVResource(base_resource.BaseResource):
             self.response_filename,
             self.query_params,
             self.request_headers,
+            self.manual_schema,
         )
 
     def load(self, destination: DestinationTypes) -> str:
