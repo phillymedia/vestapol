@@ -82,3 +82,14 @@ class BaseResource(ABC):
         hive_path = "/".join(prefix_components)
 
         return hive_path
+
+    def get_pathname(self, data_path: List[Tuple[str, str]] = None):
+        target_prefix = self.get_response_root(self.external_data_format_tag)
+
+        if data_path:
+            hive_path = self.get_hive_path(data_path)
+            pathname = target_prefix / hive_path / self.response_filename
+        else:
+            pathname = target_prefix / self.response_filename
+
+        return pathname
