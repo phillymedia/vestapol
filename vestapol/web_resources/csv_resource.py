@@ -1,5 +1,8 @@
 from __future__ import annotations
 
+from typing import Dict
+from typing import List
+from typing import Tuple
 from typing import TYPE_CHECKING
 
 from vestapol.web_resources import base_resource
@@ -26,6 +29,7 @@ class CSVResource(base_resource.BaseResource):
         has_header: bool,
         query_params: dict = None,
         request_headers: dict = None,
+        manual_schema: List[Dict] = None,
     ):
         self.name = name
         self.base_url = base_url
@@ -34,6 +38,7 @@ class CSVResource(base_resource.BaseResource):
         self.has_header = has_header
         self.query_params = query_params
         self.request_headers = request_headers
+        self.manual_schema = manual_schema
 
         super().__init__(
             self.name,
@@ -45,6 +50,7 @@ class CSVResource(base_resource.BaseResource):
             self.response_filename,
             self.query_params,
             self.request_headers,
+            self.manual_schema,
         )
 
     def load(self, destination: DestinationTypes) -> str:
@@ -54,10 +60,17 @@ class CSVResource(base_resource.BaseResource):
             self.write_header(data, destination)
         return data
 
-    def write_data(self, data: str, destination: DestinationTypes):
-        text_writer.write_text(
-            data, self.response_target_prefix / self.response_filename, destination
-        )
+    def write_data(self, data, destination: DestinationTypes):
+        self.write_string(data, destination, data_path=None)
+
+    def write_string(
+        self,
+        data: str,
+        destination: DestinationTypes,
+        data_path: List[Tuple[str, str]] = None,
+    ):
+        pathname = self.get_pathname(data_path)
+        text_writer.write_text(data, pathname, destination)
 
     def write_header(self, data: str, destination: DestinationTypes):
         header_row = data.split("\n")[0]

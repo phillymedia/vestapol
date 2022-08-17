@@ -1,7 +1,10 @@
 from __future__ import annotations
 
 from abc import abstractmethod
-from typing import Dict, List, Tuple, TYPE_CHECKING
+from typing import Dict
+from typing import List
+from typing import Tuple
+from typing import TYPE_CHECKING
 
 from vestapol.web_resources import base_resource
 from vestapol.writers import json_writer
@@ -83,14 +86,3 @@ class JSONResource(base_resource.BaseResource):
 
         pathname = self.get_pathname(data_path)
         json_writer.write_json(data=data, pathname=pathname, destination=destination)
-
-    def get_pathname(self, data_path: List[Tuple[str, str]] = None):
-        jsonl_target_prefix = self.get_response_root(self.external_data_format_tag)
-
-        if data_path:
-            hive_path = self.get_hive_path(data_path)
-            pathname = jsonl_target_prefix / hive_path / self.response_filename
-        else:
-            pathname = jsonl_target_prefix / self.response_filename
-
-        return pathname
