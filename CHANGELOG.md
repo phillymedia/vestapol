@@ -29,3 +29,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 
 - Bug fix for manual schema option
+
+## [0.0.13] - 2022-08-17
+
+### Added
+
+- Support manual schema option for CSVResource
+- Support custom Hive paths for CSVResource
