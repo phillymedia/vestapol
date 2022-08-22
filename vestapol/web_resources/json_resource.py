@@ -64,7 +64,7 @@ class JSONResource(base_resource.BaseResource):
         self,
         data: List[Dict],
         destination: DestinationTypes,
-        data_path: List[Tuple[str, str]] = None,
+        data_path: List[Tuple[str, Any]] = None,
     ):
         if not isinstance(data, list):
             raise TypeError(f"Expected a list, received {type(data)}")
