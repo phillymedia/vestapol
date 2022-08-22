@@ -36,3 +36,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 - Support manual schema option for CSVResource
 - Support custom Hive paths for CSVResource
+
+## [0.0.14] - 2022-09-22
+
+### Added
+
+- Add py.typed marker so that dependent libraries can use type vestapol type annotations
