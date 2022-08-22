@@ -1,9 +1,6 @@
 from __future__ import annotations
 
-from typing import Dict
-from typing import List
-from typing import Tuple
-from typing import TYPE_CHECKING
+from typing import Dict, List, Tuple, Any, TYPE_CHECKING
 
 from vestapol.web_resources import base_resource
 from vestapol.writers import json_writer
@@ -67,7 +64,7 @@ class CSVResource(base_resource.BaseResource):
         self,
         data: str,
         destination: DestinationTypes,
-        data_path: List[Tuple[str, str]] = None,
+        data_path: List[Tuple[str, Any]] = None,
     ):
         pathname = self.get_pathname(data_path)
         text_writer.write_text(data, pathname, destination)

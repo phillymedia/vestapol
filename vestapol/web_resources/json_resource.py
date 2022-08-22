@@ -1,10 +1,7 @@
 from __future__ import annotations
 
 from abc import abstractmethod
-from typing import Dict
-from typing import List
-from typing import Tuple
-from typing import TYPE_CHECKING
+from typing import Dict, List, Tuple, Any, TYPE_CHECKING
 
 from vestapol.web_resources import base_resource
 from vestapol.writers import json_writer
@@ -79,7 +76,7 @@ class JSONResource(base_resource.BaseResource):
         self,
         data: Dict,
         destination: DestinationTypes,
-        data_path: List[Tuple[str, str]] = None,
+        data_path: List[Tuple[str, Any]] = None,
     ):
         if not isinstance(data, dict):
             raise TypeError(f"Expected a dict, received {type(data)}")
