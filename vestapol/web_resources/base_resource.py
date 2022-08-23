@@ -3,7 +3,7 @@ from __future__ import annotations
 import pathlib
 from abc import ABC
 from abc import abstractmethod
-from typing import List, Tuple, Any, TYPE_CHECKING
+from typing import List, Tuple, Any, Optional, TYPE_CHECKING
 
 from pendulum import DateTime
 
@@ -17,8 +17,8 @@ class BaseResource(ABC):
     def __init__(
         self,
         name: str,
-        base_url: str,
-        endpoint: str,
+        base_url: Optional[str],
+        endpoint: Optional[str],
         version: str,
         response_format_tag: str,
         external_data_format_tag: str,

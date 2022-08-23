@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Dict, List, Tuple, Any, TYPE_CHECKING
+from typing import Dict, List, Tuple, Any, Optional, TYPE_CHECKING
 
 from vestapol.web_resources import base_resource
 from vestapol.writers import json_writer
@@ -20,8 +20,8 @@ class CSVResource(base_resource.BaseResource):
     def __init__(
         self,
         name: str,
-        base_url: str,
-        endpoint: str,
+        base_url: Optional[str],
+        endpoint: Optional[str],
         version: str,
         has_header: bool,
         query_params: dict = None,
