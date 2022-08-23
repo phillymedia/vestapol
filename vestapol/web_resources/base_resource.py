@@ -3,9 +3,7 @@ from __future__ import annotations
 import pathlib
 from abc import ABC
 from abc import abstractmethod
-from typing import List
-from typing import Tuple
-from typing import TYPE_CHECKING
+from typing import List, Tuple, Any, Optional, TYPE_CHECKING
 
 from pendulum import DateTime
 
@@ -19,8 +17,8 @@ class BaseResource(ABC):
     def __init__(
         self,
         name: str,
-        base_url: str,
-        endpoint: str,
+        base_url: Optional[str],
+        endpoint: Optional[str],
         version: str,
         response_format_tag: str,
         external_data_format_tag: str,
@@ -73,7 +71,7 @@ class BaseResource(ABC):
         return f'requested_at={self.requested_at.strftime("%Y-%m-%d %H:%M:%S")}'
 
     @staticmethod
-    def get_hive_path(data_path: List[Tuple[str, str]]):
+    def get_hive_path(data_path: List[Tuple[str, Any]]) -> str:
 
         prefix_components = []
         for x in data_path:
@@ -83,7 +81,7 @@ class BaseResource(ABC):
 
         return hive_path
 
-    def get_pathname(self, data_path: List[Tuple[str, str]] = None):
+    def get_pathname(self, data_path: List[Tuple[str, Any]] = None) -> str:
         target_prefix = self.get_response_root(self.external_data_format_tag)
 
         if data_path:
