@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from abc import abstractmethod
-from typing import Dict, List, Tuple, Any, TYPE_CHECKING
+from typing import Dict, List, Tuple, Any, Optional, TYPE_CHECKING
 
 from vestapol.web_resources import base_resource
 from vestapol.writers import json_writer
@@ -29,9 +29,9 @@ class JSONResource(base_resource.BaseResource):
         self.base_url: str = base_url
         self.endpoint: str = endpoint
         self.version: str = version
-        self.query_params: dict = query_params
-        self.request_headers: dict = request_headers
-        self.manual_schema: List[Dict] = manual_schema
+        self.query_params: Optional[dict] = query_params
+        self.request_headers: Optional[dict] = request_headers
+        self.manual_schema: Optional[List[Dict]] = manual_schema
         super().__init__(
             self.name,
             self.base_url,
