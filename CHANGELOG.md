@@ -42,3 +42,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 
 - Add py.typed marker so that dependent libraries can use type vestapol type annotations
+
+## [0.0.15] - 2022-09-28
+
+### Removed
+
+- Removed functionality that creates a header metadata file for `CSVResource`s
+- Removed the `has_header` parameter for `CSVResource`s
+
+### Fixed
+- Fixed a bug where the BigQuery external table would ignore the first row of all CSV data, even if the data did not contain a header row.
+
+### Added
+- Added an optional `skip_leading_rows` parameter to `CSVResource` to specify andinteger indicating the number of header rows in the source data.
