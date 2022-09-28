@@ -3,7 +3,11 @@ from __future__ import annotations
 import pathlib
 from abc import ABC
 from abc import abstractmethod
-from typing import List, Tuple, Any, Optional, TYPE_CHECKING
+from typing import Any
+from typing import List
+from typing import Optional
+from typing import Tuple
+from typing import TYPE_CHECKING
 
 from pendulum import DateTime
 
@@ -38,6 +42,7 @@ class BaseResource(ABC):
         self.request_headers = request_headers
         self.manual_schema = manual_schema
         self.requested_at = DateTime.utcnow().replace(microsecond=0)
+        self.skip_leading_rows: Optional[int] = None
 
     def load(self, destination: DestinationTypes):
         data = self.request_data()
