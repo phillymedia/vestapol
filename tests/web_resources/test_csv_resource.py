@@ -14,9 +14,9 @@ def mock_csv_resource():
     name = "dummy_resource"
     endpoint = "/dummy"
     version = "v99.9"
-    has_header = True
+    skip_leading_rows = 123
     mock_csv_resource = csv_resource.CSVResource(
-        name, base_url, endpoint, version, has_header
+        name, base_url, endpoint, version, skip_leading_rows
     )
     mock_csv_resource.requested_at = DateTime(1970, 1, 1)
     return mock_csv_resource
@@ -54,10 +54,9 @@ def test_write_string(mock, mock_csv_resource):
     )
 
 
-@patch("vestapol.web_resources.csv_resource.CSVResource.write_header")
 @patch("vestapol.web_resources.csv_resource.CSVResource.write_data")
 @patch("vestapol.web_resources.csv_resource.CSVResource.request_data")
-def test_load(mock1, mock2, mock3, mock_csv_resource):
+def test_load(mock1, mock2, mock_csv_resource):
     mock_response_data = "col1,col2"
     mock1.return_value = mock_response_data
     destination = MagicMock()
@@ -66,4 +65,3 @@ def test_load(mock1, mock2, mock3, mock_csv_resource):
     assert data == mock_response_data
     mock1.assert_called()
     mock2.assert_called_with(mock_response_data, destination)
-    mock3.assert_called_with(mock_response_data, destination)

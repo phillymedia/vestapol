@@ -3,14 +3,18 @@ from __future__ import annotations
 import pathlib
 from abc import ABC
 from abc import abstractmethod
-from typing import List, Tuple, Any, Optional, TYPE_CHECKING
+from typing import Any
+from typing import List
+from typing import Optional
+from typing import Tuple
+from typing import TYPE_CHECKING
 
 from pendulum import DateTime
 
 from vestapol.api import api
 
 if TYPE_CHECKING:
-    from vestapol.destinations import DestinationTypes
+    from vestapol.destinations.base_destination import BaseDestination
 
 
 class BaseResource(ABC):
@@ -38,8 +42,9 @@ class BaseResource(ABC):
         self.request_headers = request_headers
         self.manual_schema = manual_schema
         self.requested_at = DateTime.utcnow().replace(microsecond=0)
+        self.skip_leading_rows: Optional[int] = None
 
-    def load(self, destination: DestinationTypes):
+    def load(self, destination: BaseDestination):
         data = self.request_data()
         self.write_data(data, destination)
         return data
@@ -53,7 +58,7 @@ class BaseResource(ABC):
         )
 
     @abstractmethod
-    def write_data(self, data, destination: DestinationTypes):
+    def write_data(self, data, destination: BaseDestination):
         pass
 
     def get_response_root(self, format_tag: str):

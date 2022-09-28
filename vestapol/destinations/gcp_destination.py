@@ -3,16 +3,17 @@ from __future__ import annotations
 import logging
 import os
 import pathlib
-
-from google.cloud import storage
 from typing import TYPE_CHECKING
+
+from google.cloud import bigquery
+from google.cloud import storage
 
 from vestapol import external_tables
 from vestapol.destinations import base_destination
-from google.cloud import bigquery
+
 
 if TYPE_CHECKING:
-    from vestapol.web_resources import ResourceTypes
+    from vestapol.web_resources.base_resource import BaseResource
 
 logger = logging.getLogger(__name__)
 
@@ -45,7 +46,7 @@ class GoogleCloudPlatform(base_destination.BaseDestination):
         blob = bucket.blob(destination_blob_name)
         blob.upload_from_string(data, timeout=120)
 
-    def create_table(self, resource: ResourceTypes):
+    def create_table(self, resource: BaseResource):
         common_prefix = pathlib.Path(
             resource.name, resource.external_data_format_tag, resource.version
         )
@@ -76,6 +77,7 @@ class GoogleCloudPlatform(base_destination.BaseDestination):
             source_uri_prefix_fq,
             source_uris,
             table_schema,
+            resource.skip_leading_rows,
         )
 
         tablename_fq = f"{self.gbq_project_id}.{self.gbq_dataset_id}.{tablename}"

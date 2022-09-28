@@ -1,13 +1,18 @@
 from __future__ import annotations
 
 from abc import abstractmethod
-from typing import Dict, List, Tuple, Any, Optional, TYPE_CHECKING
+from typing import Any
+from typing import Dict
+from typing import List
+from typing import Optional
+from typing import Tuple
+from typing import TYPE_CHECKING
 
 from vestapol.web_resources import base_resource
 from vestapol.writers import json_writer
 
 if TYPE_CHECKING:
-    from vestapol.destinations import DestinationTypes
+    from vestapol.destinations.base_destination import BaseDestination
 
 
 class JSONResource(base_resource.BaseResource):
@@ -45,13 +50,13 @@ class JSONResource(base_resource.BaseResource):
             self.manual_schema,
         )
 
-    def load(self, destination: DestinationTypes):
+    def load(self, destination: BaseDestination):
         data = self.request_data()
         self.write_data(data, destination)
         self.unnest_data(data, destination)
         return data
 
-    def write_data(self, api_data, destination: DestinationTypes):
+    def write_data(self, api_data, destination: BaseDestination):
         json_writer.write_json(
             api_data, self.response_target_prefix / self.response_filename, destination
         )
@@ -63,7 +68,7 @@ class JSONResource(base_resource.BaseResource):
     def write_list(
         self,
         data: List[Dict],
-        destination: DestinationTypes,
+        destination: BaseDestination,
         data_path: List[Tuple[str, Any]] = None,
     ):
         if not isinstance(data, list):
@@ -75,7 +80,7 @@ class JSONResource(base_resource.BaseResource):
     def write_dict(
         self,
         data: Dict,
-        destination: DestinationTypes,
+        destination: BaseDestination,
         data_path: List[Tuple[str, Any]] = None,
     ):
         if not isinstance(data, dict):

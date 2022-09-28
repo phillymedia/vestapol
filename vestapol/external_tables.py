@@ -1,5 +1,7 @@
+from typing import List
+from typing import Optional
+
 from google.cloud import bigquery
-from typing import List, Optional
 
 
 def get_dataset(
@@ -16,6 +18,7 @@ def get_external_data_configuration(
     source_uris: List[str],
     source_format: str,
     table_schema: Optional[List[bigquery.SchemaField]] = None,
+    skip_leading_rows: Optional[int] = None,
 ):
 
     bq_source_format = {"jsonl": "NEWLINE_DELIMITED_JSON", "csv": "CSV"}[source_format]
@@ -37,7 +40,7 @@ def get_external_data_configuration(
     external_config.source_uris = source_uris
 
     if bq_source_format == "CSV":
-        external_config.csv_options.skip_leading_rows = 1
+        external_config.csv_options.skip_leading_rows = skip_leading_rows
 
     return external_config
 
@@ -51,6 +54,7 @@ def create_gcp_table(
     source_uri_prefix_fq: str,
     source_uris: List[str],
     table_schema: Optional[List[bigquery.SchemaField]],
+    skip_leading_rows: Optional[int] = None,
 ):
 
     client = bigquery.Client()
@@ -61,7 +65,11 @@ def create_gcp_table(
     table = bigquery.Table(dataset.table(table_id))
 
     table.external_data_configuration = get_external_data_configuration(
-        source_uri_prefix_fq, source_uris, source_format, table_schema
+        source_uri_prefix_fq,
+        source_uris,
+        source_format,
+        table_schema,
+        skip_leading_rows,
     )
 
     # Create a permanent table linked to the GCS file

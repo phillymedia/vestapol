@@ -7,7 +7,7 @@ from typing import TYPE_CHECKING
 from vestapol.destinations import base_destination
 
 if TYPE_CHECKING:
-    from vestapol.web_resources import ResourceTypes
+    from vestapol.web_resources.base_resource import BaseResource
 
 logger = logging.getLogger(__name__)
 
@@ -27,5 +27,5 @@ class Local(base_destination.BaseDestination):
         abs_pathname.parent.mkdir(parents=True, exist_ok=True)
         return abs_pathname
 
-    def create_table(self, resource: ResourceTypes):
+    def create_table(self, resource: BaseResource):
         return super().create_table(resource)

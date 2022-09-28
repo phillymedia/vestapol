@@ -1,6 +1,7 @@
-from google.cloud import bigquery
 from unittest.mock import MagicMock
 from unittest.mock import patch
+
+from google.cloud import bigquery
 
 from vestapol.destinations.gcp_destination import GoogleCloudPlatform
 
@@ -24,6 +25,8 @@ def test_create_table(mock):
             },
         ],
     )
+
+    resource.skip_leading_rows = 123
 
     # Can't set the "name" attribute when instantiating a MagicMock
     resource.name = "dummy_resource"
@@ -56,4 +59,5 @@ def test_create_table(mock):
                 ],
             ),
         ],
+        123,
     )
