@@ -10,6 +10,7 @@ from google.cloud import storage
 
 from vestapol import external_tables
 from vestapol.destinations import base_destination
+from vestapol.web_resources.csv_resource import CSVResource
 
 if TYPE_CHECKING:
     from vestapol.web_resources import ResourceTypes
@@ -67,9 +68,9 @@ class GoogleCloudPlatform(base_destination.BaseDestination):
         else:
             table_schema = None
 
-        try:
+        if isinstance(resource, CSVResource):
             skip_leading_rows = resource.skip_leading_rows
-        except AttributeError:
+        else:
             skip_leading_rows = None
 
         external_tables.create_gcp_table(
