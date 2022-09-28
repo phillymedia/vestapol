@@ -10,10 +10,10 @@ from google.cloud import storage
 
 from vestapol import external_tables
 from vestapol.destinations import base_destination
-from vestapol.web_resources.csv_resource import CSVResource
+
 
 if TYPE_CHECKING:
-    from vestapol.web_resources import ResourceTypes
+    from vestapol.web_resources.base_resource import BaseResource
 
 logger = logging.getLogger(__name__)
 
@@ -46,7 +46,7 @@ class GoogleCloudPlatform(base_destination.BaseDestination):
         blob = bucket.blob(destination_blob_name)
         blob.upload_from_string(data, timeout=120)
 
-    def create_table(self, resource: ResourceTypes):
+    def create_table(self, resource: BaseResource):
         common_prefix = pathlib.Path(
             resource.name, resource.external_data_format_tag, resource.version
         )
@@ -68,11 +68,6 @@ class GoogleCloudPlatform(base_destination.BaseDestination):
         else:
             table_schema = None
 
-        if isinstance(resource, CSVResource):
-            skip_leading_rows = resource.skip_leading_rows
-        else:
-            skip_leading_rows = None
-
         external_tables.create_gcp_table(
             resource.external_data_format_tag,
             self.gbq_project_id,
@@ -82,7 +77,7 @@ class GoogleCloudPlatform(base_destination.BaseDestination):
             source_uri_prefix_fq,
             source_uris,
             table_schema,
-            skip_leading_rows,
+            resource.skip_leading_rows,
         )
 
         tablename_fq = f"{self.gbq_project_id}.{self.gbq_dataset_id}.{tablename}"

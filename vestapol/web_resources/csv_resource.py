@@ -11,7 +11,7 @@ from vestapol.web_resources import base_resource
 from vestapol.writers import text_writer
 
 if TYPE_CHECKING:
-    from vestapol.destinations import DestinationTypes
+    from vestapol.destinations.base_destination import BaseDestination
 
 
 class CSVResource(base_resource.BaseResource):
@@ -51,13 +51,13 @@ class CSVResource(base_resource.BaseResource):
             self.manual_schema,
         )
 
-    def write_data(self, data, destination: DestinationTypes):
+    def write_data(self, data, destination: BaseDestination):
         self.write_string(data, destination, data_path=None)
 
     def write_string(
         self,
         data: str,
-        destination: DestinationTypes,
+        destination: BaseDestination,
         data_path: List[Tuple[str, Any]] = None,
     ):
         pathname = self.get_pathname(data_path)

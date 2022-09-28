@@ -5,7 +5,7 @@ from abc import abstractmethod
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from vestapol.web_resources import ResourceTypes
+    from vestapol.web_resources.base_resource import BaseResource
 
 
 class BaseDestination(ABC):
@@ -14,7 +14,7 @@ class BaseDestination(ABC):
         pass
 
     @abstractmethod
-    def create_table(self, resource: ResourceTypes):
+    def create_table(self, resource: BaseResource):
         """
         Implementations of method should return the fully-qualified table name
         of the created table

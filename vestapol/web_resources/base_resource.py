@@ -14,7 +14,7 @@ from pendulum import DateTime
 from vestapol.api import api
 
 if TYPE_CHECKING:
-    from vestapol.destinations import DestinationTypes
+    from vestapol.destinations.base_destination import BaseDestination
 
 
 class BaseResource(ABC):
@@ -44,7 +44,7 @@ class BaseResource(ABC):
         self.requested_at = DateTime.utcnow().replace(microsecond=0)
         self.skip_leading_rows: Optional[int] = None
 
-    def load(self, destination: DestinationTypes):
+    def load(self, destination: BaseDestination):
         data = self.request_data()
         self.write_data(data, destination)
         return data
@@ -58,7 +58,7 @@ class BaseResource(ABC):
         )
 
     @abstractmethod
-    def write_data(self, data, destination: DestinationTypes):
+    def write_data(self, data, destination: BaseDestination):
         pass
 
     def get_response_root(self, format_tag: str):
