@@ -16,7 +16,7 @@ nyt_covid_data_2022 = CSVResource(
     base_url="https://raw.githubusercontent.com/",
     endpoint="nytimes/covid-19-data/master/rolling-averages/us-counties-2022.csv",
     version="v0",
-    has_header=True,
+    skip_leading_rows=1,
 )
 
 destination = GoogleCloudPlatform()

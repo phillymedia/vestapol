@@ -3,13 +3,13 @@ from __future__ import annotations
 import logging
 import os
 import pathlib
-
-from google.cloud import storage
 from typing import TYPE_CHECKING
+
+from google.cloud import bigquery
+from google.cloud import storage
 
 from vestapol import external_tables
 from vestapol.destinations import base_destination
-from google.cloud import bigquery
 
 if TYPE_CHECKING:
     from vestapol.web_resources import ResourceTypes
@@ -67,6 +67,11 @@ class GoogleCloudPlatform(base_destination.BaseDestination):
         else:
             table_schema = None
 
+        try:
+            skip_leading_rows = resource.skip_leading_rows
+        except AttributeError:
+            skip_leading_rows = None
+
         external_tables.create_gcp_table(
             resource.external_data_format_tag,
             self.gbq_project_id,
@@ -76,6 +81,7 @@ class GoogleCloudPlatform(base_destination.BaseDestination):
             source_uri_prefix_fq,
             source_uris,
             table_schema,
+            skip_leading_rows,
         )
 
         tablename_fq = f"{self.gbq_project_id}.{self.gbq_dataset_id}.{tablename}"
