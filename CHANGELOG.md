@@ -55,3 +55,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 - Added an optional `skip_leading_rows` parameter to `CSVResource` to specify andinteger indicating the number of header rows in the source data.
+
+## [0.0.16] - 2022-09-29
+
+### Fixed
+- Fixed issue where an invalid `None` value could be passed to the `skip_leading_rows` parameter
