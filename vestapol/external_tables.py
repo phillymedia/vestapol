@@ -18,7 +18,7 @@ def get_external_data_configuration(
     source_uris: List[str],
     source_format: str,
     table_schema: Optional[List[bigquery.SchemaField]] = None,
-    skip_leading_rows: Optional[int] = None,
+    skip_leading_rows: int = 0,
 ):
 
     bq_source_format = {"jsonl": "NEWLINE_DELIMITED_JSON", "csv": "CSV"}[source_format]
@@ -54,7 +54,7 @@ def create_gcp_table(
     source_uri_prefix_fq: str,
     source_uris: List[str],
     table_schema: Optional[List[bigquery.SchemaField]],
-    skip_leading_rows: Optional[int] = None,
+    skip_leading_rows: int = 0,
 ):
 
     client = bigquery.Client()
