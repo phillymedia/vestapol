@@ -12,7 +12,7 @@ homepage = "https://github.com/phillymedia/vestapol"
 python = ">=3.8.12,<3.11"
 requests = "^2.26"
 google-cloud-storage = "^1.43"
-google-cloud-bigquery = "^2.31"
+google-cloud-bigquery = ">=2.31,<4.0"
 pendulum = "^2.1"
 
 [tool.poetry.dev-dependencies]
