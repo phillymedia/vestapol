@@ -83,9 +83,11 @@ class GoogleCloudPlatform(base_destination.BaseDestination):
         return tablename_fq
 
     def dict_to_schema(self, dict_schema):
+        name = dict_schema["name"]
         if "fields" in dict_schema.keys():
+            print(f"fields in {name}")
             dict_schema["fields"] = [
                 self.dict_to_schema(f) for f in dict_schema["fields"]
             ]
-        else:
-            return bigquery.SchemaField(**dict_schema)
+        print(f"return {name}")
+        return bigquery.SchemaField(**dict_schema)
