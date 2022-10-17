@@ -13,14 +13,22 @@ def test_create_table(mock):
         version="v999.9",
         response_filename="dum.my",
         manual_schema=[
-            {"name": "test1", "field_type": "INTEGER"},
-            {"name": "test2", "field_type": "STRING"},
+            {"name": "1a", "field_type": "INTEGER"},
+            {"name": "1b", "field_type": "STRING"},
             {
-                "name": "test3",
+                "name": "1c",
                 "field_type": "RECORD",
                 "fields": [
-                    {"name": "name", "field_type": "FLOAT64"},
-                    {"name": "id", "field_type": "INT64"},
+                    {"name": "2a", "field_type": "FLOAT64"},
+                    {"name": "2b", "field_type": "INT64"},
+                    {
+                        "name": "2c",
+                        "field_type": "RECORD",
+                        "fields": [
+                            {"name": "3a", "field_type": "INT64"},
+                            {"name": "3b", "field_type": "STRING"},
+                        ],
+                    },
                 ],
             },
         ],
@@ -48,14 +56,22 @@ def test_create_table(mock):
         "gs://bucket_name/root_prefix/dummy_resource/dum/v999.9/",
         ["gs://bucket_name/root_prefix/dummy_resource/dum/v999.9/*/dum.my"],
         [
-            bigquery.SchemaField("test1", "INTEGER"),
-            bigquery.SchemaField("test2", "STRING"),
+            bigquery.SchemaField("1a", "INTEGER"),
+            bigquery.SchemaField("1b", "STRING"),
             bigquery.SchemaField(
-                "test3",
+                "1c",
                 "RECORD",
                 fields=[
-                    bigquery.SchemaField("name", "FLOAT64"),
-                    bigquery.SchemaField("id", "INT64"),
+                    bigquery.SchemaField("2a", "FLOAT64"),
+                    bigquery.SchemaField("2b", "INT64"),
+                    bigquery.SchemaField(
+                        "2c",
+                        "RECORD",
+                        fields=[
+                            bigquery.SchemaField("3a", "INT64"),
+                            bigquery.SchemaField("3b", "STRING"),
+                        ],
+                    ),
                 ],
             ),
         ],
