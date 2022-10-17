@@ -60,11 +60,7 @@ class GoogleCloudPlatform(base_destination.BaseDestination):
         tablename = resource.name
 
         if resource.manual_schema is not None:
-            table_schema = []
-            for s in resource.manual_schema:
-                if "fields" in s.keys():
-                    s["fields"] = [bigquery.SchemaField(**f) for f in s["fields"]]
-                table_schema.append(bigquery.SchemaField(**s))
+            table_schema = [self.dict_to_schema(s) for s in resource.manual_schema]
         else:
             table_schema = None
 
@@ -83,3 +79,10 @@ class GoogleCloudPlatform(base_destination.BaseDestination):
         tablename_fq = f"{self.gbq_project_id}.{self.gbq_dataset_id}.{tablename}"
 
         return tablename_fq
+
+    def dict_to_schema(self, dict_schema):
+        if "fields" in dict_schema.keys():
+            dict_schema["fields"] = [
+                self.dict_to_schema(f) for f in dict_schema["fields"]
+            ]
+        return bigquery.SchemaField(**dict_schema)
