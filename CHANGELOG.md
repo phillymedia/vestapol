@@ -60,3 +60,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 - Fixed issue where an invalid `None` value could be passed to the `skip_leading_rows` parameter
+
+## [0.0.17] - 2022-10-17
+
+### Added
+- Added support for deeply nested manual schemans in `gcp_destination`.
