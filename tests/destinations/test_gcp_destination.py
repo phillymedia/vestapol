@@ -2,7 +2,6 @@ from unittest.mock import MagicMock
 from unittest.mock import patch
 
 from google.cloud import bigquery
-from google.cloud.bigquery import SchemaField
 
 from vestapol.destinations.gcp_destination import GoogleCloudPlatform
 
@@ -78,31 +77,3 @@ def test_create_table(mock):
         ],
         123,
     )
-
-
-[
-    SchemaField("1a", "INTEGER", "NULLABLE", None, (), None),
-    SchemaField("1b", "STRING", "NULLABLE", None, (), None),
-    SchemaField(
-        "1c",
-        "RECORD",
-        "NULLABLE",
-        None,
-        (
-            SchemaField("2a", "FLOAT64", "NULLABLE", None, (), None),
-            SchemaField("2b", "INT64", "NULLABLE", None, (), None),
-            SchemaField(
-                "2c",
-                "RECORD",
-                "NULLABLE",
-                None,
-                (
-                    SchemaField("3a", "INT64", "NULLABLE", None, (), None),
-                    SchemaField("3b", "STRING", "NULLABLE", None, (), None),
-                ),
-                None,
-            ),
-        ),
-        None,
-    ),
-]
