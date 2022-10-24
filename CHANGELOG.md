@@ -69,4 +69,4 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [0.0.18] - 2022-10-24
 
 ### Fixed
-- Fixed a bug where the `skip_lead_rows` parameter in  `csv_reosource` was not being passed to the base class.
+- Fixed a bug where the `skip_leading_rows` parameter in  `csv_resource` was not being passed to the base class.
