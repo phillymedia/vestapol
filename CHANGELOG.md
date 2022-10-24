@@ -65,3 +65,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 - Added support for deeply nested manual schemans in `gcp_destination`.
+
+## [0.0.18] - 2022-10-24
+
+### Fixed
+- Fixed a bug where the `skip_lead_rows` parameter in  `csv_reosource` was not being passed to the base class.

@@ -30,6 +30,7 @@ class BaseResource(ABC):
         query_params: dict = None,
         request_headers: dict = None,
         manual_schema=None,
+        skip_leading_rows: int = 0,
     ):
         self.name = name
         self.base_url = base_url
@@ -42,7 +43,7 @@ class BaseResource(ABC):
         self.request_headers = request_headers
         self.manual_schema = manual_schema
         self.requested_at = DateTime.utcnow().replace(microsecond=0)
-        self.skip_leading_rows: int = 0
+        self.skip_leading_rows = skip_leading_rows
 
     def load(self, destination: BaseDestination):
         data = self.request_data()
