@@ -49,6 +49,7 @@ class CSVResource(base_resource.BaseResource):
             self.query_params,
             self.request_headers,
             self.manual_schema,
+            self.skip_leading_rows,
         )
 
     def write_data(self, data, destination: BaseDestination):
