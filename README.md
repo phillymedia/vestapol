@@ -42,8 +42,13 @@ for row in query_job.result():
 
 ## Prerequisites
 
-Installation of this project requires [Poetry](https://python-poetry.org/docs/) and Python version 3.8+.
+Installation of this project requires [Poetry](https://python-poetry.org/docs/) 1.2+ and Python version 3.9+.
 
+Older version of poetry can be updated by running:
+```shell
+poetry self update
+poetry --version
+```
 
 ## Installation
 
