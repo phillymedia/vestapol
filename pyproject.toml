@@ -15,7 +15,7 @@ google-cloud-storage = "^1.43"
 google-cloud-bigquery = "^2.31"
 pendulum = "^2.1"
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
 python-dotenv = "^0.19.2"
 pytest = "^6.2.5"
 tox = "^3.25.0"
@@ -24,6 +24,12 @@ types-requests = "^2.28.11"
 flake8 = "^5.0.4"
 black = "^22.8.0"
 pre-commit = "^2.20.0"
+
+[tool.poetry.group.tox]
+optional = true
+
+[tool.poetry.group.tox.dependencies]
+tox = "3.27.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
