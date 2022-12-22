@@ -15,7 +15,7 @@ jobs:
           python-version: "3.9"
       - name: Install poetry
         run: python -m pip install poetry
-      - name: Install project dependencies
-        run: poetry install
+      - name: Create poetry virtual env and install tox
+        run: poetry install --only tox
       - name: Test with tox
         run: poetry run tox
