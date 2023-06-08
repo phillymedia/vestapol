@@ -5,8 +5,8 @@ import os
 import pathlib
 from typing import TYPE_CHECKING
 
-from google.cloud import bigquery
-from google.cloud import storage
+import google.cloud.bigquery as bigquery
+import google.cloud.storage as storage
 
 from vestapol import external_tables
 from vestapol.destinations import base_destination
