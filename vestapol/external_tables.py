@@ -40,7 +40,8 @@ def get_external_data_configuration(
     external_config.source_uris = source_uris
 
     if bq_source_format == "CSV":
-        external_config.csv_options.skip_leading_rows = skip_leading_rows
+        # skips mypy since Google does not give CSVOptions a signature
+        external_config.csv_options.skip_leading_rows = skip_leading_rows  # type: ignore
 
     return external_config
 
