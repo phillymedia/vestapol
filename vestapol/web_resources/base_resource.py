@@ -52,7 +52,7 @@ class BaseResource(ABC):
 
         Args:
             destination (BaseDestination): The destination being written to. See
-            the destinations module for supported destination types
+            the destinations module for supported destination types.
 
         Returns:
             list: a list of data rows
@@ -62,6 +62,14 @@ class BaseResource(ABC):
         return data  # TODO: I think we can remove this return statement
 
     def request_data(self):
+        """Method that encapsulates the call to an API or other web resource. It
+        returns a raw representation of the response may be further transformed
+        so that it can be parsed by external object tables. In most instances,
+        this method will be overridden when creating a subclass of BaseResource.
+
+        Returns:
+            any: a representation of the data returned by the API call
+        """
         return api.get_api_data(
             f"{self.base_url}{self.endpoint}",
             self.response_format_tag,
