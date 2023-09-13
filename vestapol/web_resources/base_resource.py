@@ -46,11 +46,30 @@ class BaseResource(ABC):
         self.skip_leading_rows = skip_leading_rows
 
     def load(self, destination: BaseDestination):
+        """The main entry point method for Vestapol resources. This method
+        retrieves data from some external resource and then writes the data to a
+        destination.
+
+        Args:
+            destination (BaseDestination): The destination being written to. See
+            the destinations module for supported destination types.
+
+        Returns:
+            list: a list of data rows
+        """
         data = self.request_data()
         self.write_data(data, destination)
-        return data
+        return data  # TODO: I think we can remove this return statement
 
     def request_data(self):
+        """Method that encapsulates the call to an API or other web resource. It
+        returns a raw representation of the response may be further transformed
+        so that it can be parsed by external object tables. In most instances,
+        this method will be overridden when creating a subclass of BaseResource.
+
+        Returns:
+            any: a representation of the data returned by the API call
+        """
         return api.get_api_data(
             f"{self.base_url}{self.endpoint}",
             self.response_format_tag,
