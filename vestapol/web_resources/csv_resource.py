@@ -28,6 +28,7 @@ class CSVResource(base_resource.BaseResource):
         query_params: dict = None,
         request_headers: dict = None,
         manual_schema: List[Dict] = None,
+        allow_quoted_newlines: Optional[bool] = False,
     ):
         self.name = name
         self.base_url = base_url
@@ -37,6 +38,7 @@ class CSVResource(base_resource.BaseResource):
         self.query_params = query_params
         self.request_headers = request_headers
         self.manual_schema = manual_schema
+        self.allow_quoted_newlines = allow_quoted_newlines
 
         super().__init__(
             self.name,
@@ -50,6 +52,7 @@ class CSVResource(base_resource.BaseResource):
             self.request_headers,
             self.manual_schema,
             self.skip_leading_rows,
+            self.allow_quoted_newlines,
         )
 
     def write_data(self, data, destination: BaseDestination):
