@@ -26,7 +26,6 @@ class BaseResource(ABC):
         version: str,
         response_format_tag: str,
         external_data_format_tag: str,
-        specified_delimeter: Optional[str] = ",",
         response_filename: str = "data",
         query_params: dict = None,
         request_headers: dict = None,
@@ -46,8 +45,7 @@ class BaseResource(ABC):
         self.manual_schema = manual_schema
         self.requested_at = DateTime.utcnow().replace(microsecond=0)
         self.skip_leading_rows = skip_leading_rows
-        self.allow_quoted_newlines = allow_quoted_newlines,
-        self.specified_delimeter = specified_delimeter
+        self.allow_quoted_newlines = allow_quoted_newlines
 
     def load(self, destination: BaseDestination):
         """The main entry point method for Vestapol resources. This method

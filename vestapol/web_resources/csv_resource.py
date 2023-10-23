@@ -29,7 +29,6 @@ class CSVResource(base_resource.BaseResource):
         request_headers: dict = None,
         manual_schema: List[Dict] = None,
         allow_quoted_newlines: Optional[bool] = False,
-        specified_delimeter: Optional[str] =",",
     ):
         self.name = name
         self.base_url = base_url
@@ -40,7 +39,6 @@ class CSVResource(base_resource.BaseResource):
         self.request_headers = request_headers
         self.manual_schema = manual_schema
         self.allow_quoted_newlines = allow_quoted_newlines
-        self.specified_delimeter = specified_delimeter
 
         super().__init__(
             self.name,
