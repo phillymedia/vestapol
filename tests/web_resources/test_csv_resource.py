@@ -16,8 +16,15 @@ def mock_csv_resource():
     version = "v99.9"
     skip_leading_rows = 123
     allow_quoted_newlines = True
+    field_delimiter = ","
     mock_csv_resource = csv_resource.CSVResource(
-        name, base_url, endpoint, version, skip_leading_rows, allow_quoted_newlines
+        name,
+        base_url,
+        endpoint,
+        version,
+        skip_leading_rows,
+        allow_quoted_newlines,
+        field_delimiter,
     )
     mock_csv_resource.requested_at = DateTime(1970, 1, 1)
     return mock_csv_resource

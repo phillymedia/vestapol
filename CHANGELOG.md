@@ -70,3 +70,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Fixed
 - Fixed a bug where the `skip_leading_rows` parameter in  `csv_resource` was not being passed to the base class.
+
+
+## [0.0.22] - 2023-10-23
+- Added support for specifying delimiter in csv files in `CSVResource`
+- Added support for allowing quoted newlines in csv files in `CSVResource`
