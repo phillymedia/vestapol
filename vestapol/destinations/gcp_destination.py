@@ -75,6 +75,8 @@ class GoogleCloudPlatform(base_destination.BaseDestination):
             table_schema,
             resource.skip_leading_rows,
             resource.allow_quoted_newlines,
+            resource.specified_delimiter,
+
         )
 
         tablename_fq = f"{self.gbq_project_id}.{self.gbq_dataset_id}.{tablename}"

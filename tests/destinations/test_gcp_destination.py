@@ -36,7 +36,7 @@ def test_create_table(mock):
 
     resource.skip_leading_rows = 123
     resource.allow_quoted_newlines = True
-    resource.specified_delimiter = ","
+    resource.field_delimiter = ","
 
     # Can't set the "name" attribute when instantiating a MagicMock
     resource.name = "dummy_resource"

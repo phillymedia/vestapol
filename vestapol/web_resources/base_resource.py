@@ -32,7 +32,7 @@ class BaseResource(ABC):
         manual_schema=None,
         skip_leading_rows: int = 0,
         allow_quoted_newlines: Optional[bool] = False,
-        specified_delimiter: Optional[str] = ",",
+        field_delimiter: Optional[str] = ",",
     ):
         self.name = name
         self.base_url = base_url
@@ -47,7 +47,7 @@ class BaseResource(ABC):
         self.requested_at = DateTime.utcnow().replace(microsecond=0)
         self.skip_leading_rows = skip_leading_rows
         self.allow_quoted_newlines = allow_quoted_newlines
-        self.specified_delimiter = specified_delimiter
+        self.field_delimiter = field_delimiter
 
     def load(self, destination: BaseDestination):
         """The main entry point method for Vestapol resources. This method
