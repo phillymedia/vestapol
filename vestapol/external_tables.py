@@ -61,7 +61,7 @@ def create_gcp_table(
     table_schema: Optional[List[bigquery.SchemaField]],
     skip_leading_rows: int = 0,
     allow_quoted_newlines: Optional[bool] = False,
-    specified_delimiter: Optional[str] = ",",
+    field_delimiter: Optional[str] = ",",
 ):
 
     client = bigquery.Client()
@@ -78,7 +78,7 @@ def create_gcp_table(
         table_schema,
         skip_leading_rows,
         allow_quoted_newlines,
-        specified_delimiter,
+        field_delimiter,
     )
 
     # Create a permanent table linked to the GCS file
