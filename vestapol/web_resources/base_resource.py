@@ -32,7 +32,7 @@ class BaseResource(ABC):
         manual_schema=None,
         skip_leading_rows: int = 0,
         allow_quoted_newlines: Optional[bool] = False,
-        specified_delimiter: Optional[str] =",",
+        specified_delimiter: Optional[str] = ",",
     ):
         self.name = name
         self.base_url = base_url
