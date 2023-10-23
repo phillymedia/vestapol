@@ -45,7 +45,7 @@ def get_external_data_configuration(
         # skips mypy since Google does not give CSVOptions a signature
         external_config.csv_options.skip_leading_rows = skip_leading_rows  # type: ignore # noqa: E501
         external_config.csv_options.allow_quoted_newlines = allow_quoted_newlines  # type: ignore # noqa: E501
-        external_config.csv_options.specified_delimiter = specified_delimiter  # type: ignore #noqa: E501
+        external_config.csv_options.specified_delimiter = specified_delimiter  # type: ignore # noqa: E501
 
     return external_config
 
