@@ -27,7 +27,7 @@ class CSVResource(base_resource.BaseResource):
         skip_leading_rows: int = 0,
         query_params: dict = None,
         request_headers: dict = None,
-        manual_schema: List[Dict] = None,
+        manual_schema: Optional[List[Dict]] = None,
         allow_quoted_newlines: Optional[bool] = False,
         field_delimiter: Optional[str] = ",",
     ):
