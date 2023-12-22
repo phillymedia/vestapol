@@ -77,4 +77,4 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Added support for allowing quoted newlines in csv files in `CSVResource`
 
 ## [0.0.23] - 2023-12-22
-- Adjusted the initialization parameter `CSVResource` by making the `manual_schema` optional.
+- Updated the `manual_schema` parameter in `CSVResource` to use the Optional type
