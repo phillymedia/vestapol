@@ -75,3 +75,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [0.0.22] - 2023-10-23
 - Added support for specifying delimiter in csv files in `CSVResource`
 - Added support for allowing quoted newlines in csv files in `CSVResource`
+
+## [0.0.23] - 2023-12-22
+- Updated the `manual_schema` parameter in `CSVResource` to use the Optional type
