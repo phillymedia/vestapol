@@ -6,6 +6,7 @@ from typing import Dict
 from typing import List
 from typing import Optional
 from typing import Tuple
+from typing import Generator
 from typing import TYPE_CHECKING
 
 from vestapol.web_resources import base_resource
@@ -71,8 +72,8 @@ class JSONResource(base_resource.BaseResource):
         destination: BaseDestination,
         data_path: List[Tuple[str, Any]] = None,
     ):
-        if not isinstance(data, list):
-            raise TypeError(f"Expected a list, received {type(data)}")
+        if not (isinstance(data, list) or isinstance(data, Generator)):
+            raise TypeError(f"Expected a list or generator, received {type(data)}")
 
         pathname = self.get_pathname(data_path)
         json_writer.write_jsonl(data=data, pathname=pathname, destination=destination)
