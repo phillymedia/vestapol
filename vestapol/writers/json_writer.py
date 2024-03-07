@@ -15,6 +15,8 @@ def write_json(data: dict, pathname: str, destination: BaseDestination):
     destination.write_data(data_string, pathname)
 
 
-def write_jsonl(data: Union[List[Dict], Generator], pathname: str, destination: BaseDestination):
+def write_jsonl(
+    data: Union[List[Dict], Generator], pathname: str, destination: BaseDestination
+):
     data_string = "\n".join([json.dumps(record) for record in data])
     destination.write_data(data_string, pathname)
