@@ -78,3 +78,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [0.0.23] - 2023-12-22
 - Updated the `manual_schema` parameter in `CSVResource` to use the Optional type
+
+## [0.0.24] - 2024-03-07
+- Updated the parameter data type in write_list (json_resource class)
