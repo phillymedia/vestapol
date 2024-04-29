@@ -63,7 +63,6 @@ class BaseResource(ABC):
         """
         data = self.request_data()
         self.write_data(data, destination)
-        return data  # TODO: I think we can remove this return statement
 
     def request_data(self):
         """Method that encapsulates the call to an API or other web resource. It
