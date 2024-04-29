@@ -3,10 +3,10 @@ from __future__ import annotations
 from abc import abstractmethod
 from typing import Any
 from typing import Dict
+from typing import Generator
 from typing import List
 from typing import Optional
 from typing import Tuple
-from typing import Generator
 from typing import TYPE_CHECKING
 
 from vestapol.web_resources import base_resource
@@ -55,7 +55,6 @@ class JSONResource(base_resource.BaseResource):
         data = self.request_data()
         self.write_data(data, destination)
         self.unnest_data(data, destination)
-        return data
 
     def write_data(self, api_data, destination: BaseDestination):
         json_writer.write_json(

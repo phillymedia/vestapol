@@ -81,3 +81,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [0.0.24] - 2024-03-07
 - Updated the parameter data type in write_list (json_resource class)
+
+## [0.0.26] - 2024-04-29
+- Updated the parameter data type in write_list (json_resource class)
