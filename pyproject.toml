@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "vestapol"
-version = "0.0.25"
+version = "0.0.26"
 description = "Python package that loads data from the web and deploys a corresponding external table definition, so that the data can be queried using standard SQL."
 authors = ["Brian Waligorski <bwaligorski@inquirer.com>"]
 license = "Apache License 2.0"
