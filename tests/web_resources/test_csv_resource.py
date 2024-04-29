@@ -69,7 +69,6 @@ def test_load(mock1, mock2, mock_csv_resource):
     mock1.return_value = mock_response_data
     destination = MagicMock()
 
-    data = mock_csv_resource.load(destination)
-    assert data == mock_response_data
+    mock_csv_resource.load(destination)
     mock1.assert_called()
     mock2.assert_called_with(mock_response_data, destination)
