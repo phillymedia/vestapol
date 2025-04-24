@@ -756,7 +756,7 @@ files = [
 ]
 
 [package.dependencies]
-protobuf = ">=3.19.0,5.0.0dev"
+protobuf = ">=3.19.0,<5.0.0dev"
 
 [package.extras]
 testing = ["google-api-core[grpc] (>=1.31.5)"]
