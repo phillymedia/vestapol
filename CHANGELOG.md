@@ -84,3 +84,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [0.0.26] - 2024-04-29
 - Updated the parameter data type in write_list (json_resource class)
+
+## [0.0.27] - 2025-08-28
+- Updated external_tables.py to set allow_jagged_rows to true
