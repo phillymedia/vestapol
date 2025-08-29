@@ -21,6 +21,7 @@ def get_external_data_configuration(
     skip_leading_rows: int = 0,
     allow_quoted_newlines: Optional[bool] = False,
     field_delimiter: Optional[str] = ",",
+    allow_jagged_rows: Optional[bool] = True,
 ):
 
     bq_source_format = {"jsonl": "NEWLINE_DELIMITED_JSON", "csv": "CSV"}[source_format]
@@ -46,6 +47,7 @@ def get_external_data_configuration(
         external_config.csv_options.skip_leading_rows = skip_leading_rows  # type: ignore # noqa: E501
         external_config.csv_options.allow_quoted_newlines = allow_quoted_newlines  # type: ignore # noqa: E501
         external_config.csv_options.field_delimiter = field_delimiter  # type: ignore # noqa: E501
+        external_config.csv_options.allow_jagged_rows = allow_jagged_rows  # type: ignore # noqa: E501
 
     return external_config
 
@@ -62,6 +64,7 @@ def create_gcp_table(
     skip_leading_rows: int = 0,
     allow_quoted_newlines: Optional[bool] = False,
     field_delimiter: Optional[str] = ",",
+    allow_jagged_rows: Optional[bool] = True,
 ):
 
     client = bigquery.Client()
@@ -79,6 +82,7 @@ def create_gcp_table(
         skip_leading_rows,
         allow_quoted_newlines,
         field_delimiter,
+        allow_jagged_rows,
     )
 
     # Create a permanent table linked to the GCS file
