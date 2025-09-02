@@ -82,7 +82,7 @@ Instructions for pushing new versions of `vestapol` to PyPI:
 
 1. Update `CHANGELOG.md`. Include Additions, Fixes, and Changes.
 
-2. Update project version using either a valid [PEP 440 string](https://peps.python.org/pep-0440/) or a [valid bump rule](https://python-poetry.org/docs/master/cli/#version) following [Semantic Versioning](http://semver.org/).
+2. Update project version using either a valid [PEP 440 string](https://peps.python.org/pep-0440/) or a [valid bump rule](https://python-poetry.org/docs/cli/#version) following [Semantic Versioning](http://semver.org/).
 
 ```shell
     poetry version <version string or bump rule>
