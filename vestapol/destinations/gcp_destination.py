@@ -29,7 +29,9 @@ class GoogleCloudPlatform(base_destination.BaseDestination):
     ):
         self.gcs_bucket_name = gcs_bucket_name or os.environ["GCS_BUCKET_NAME"]
         self.gcs_root_prefix = gcs_root_prefix or os.environ["GCS_ROOT_PREFIX"]
-        self.gcs_root_prefix_fq = f"gs://{self.gcs_bucket_name}/{self.gcs_root_prefix}/"
+        self.gcs_root_prefix_fq = (
+            f"gs://{self.gcs_bucket_name}/{self.gcs_root_prefix}/"  # noqa: E231
+        )
         self.gbq_project_id = gbq_project_id or os.environ["GBQ_PROJECT_ID"]
         self.gbq_dataset_id = gbq_dataset_id or os.environ["GBQ_DATASET_ID"]
         self.gbq_dataset_location = (
@@ -39,7 +41,7 @@ class GoogleCloudPlatform(base_destination.BaseDestination):
     def write_data(self, data: str, pathname: str):
         destination_blob_name = f"{self.gcs_root_prefix}/{str(pathname)}"
         logger.debug(
-            f"Uploading data to gs://{self.gcs_bucket_name}/{destination_blob_name}"
+            f"Uploading data to gs://{self.gcs_bucket_name}/{destination_blob_name}"  # noqa: E231, E501
         )
         storage_client = storage.Client()
         bucket = storage_client.bucket(self.gcs_bucket_name)
