@@ -44,7 +44,7 @@ class BaseResource(ABC):
         self.query_params = query_params
         self.request_headers = request_headers
         self.manual_schema = manual_schema
-        self.requested_at = DateTime.utcnow().replace(microsecond=0)
+        self.requested_at = DateTime.utcnow().replace(microsecond=0)  # type: ignore
         self.skip_leading_rows = skip_leading_rows
         self.allow_quoted_newlines = allow_quoted_newlines
         self.field_delimiter = field_delimiter

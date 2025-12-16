@@ -9,11 +9,11 @@ repository = "https://github.com/phillymedia/vestapol"
 homepage = "https://github.com/phillymedia/vestapol"
 
 [tool.poetry.dependencies]
-python = ">=3.8.12,<3.11"
+python = ">=3.12"
 requests = "^2.26"
 google-cloud-storage = ">=1.43"
 google-cloud-bigquery = ">=2.31"
-pendulum = "^2.1"
+pendulum = "^3.1"
 
 [tool.poetry.group.dev.dependencies]
 python-dotenv = "^0.19.2"
@@ -23,7 +23,7 @@ mypy = "^0.982"
 types-requests = "^2.28.11"
 flake8 = "^5.0.4"
 black = "^22.8.0"
-pre-commit = "^2.20.0"
+pre-commit = "^4.5.0"
 
 [tool.poetry.group.tox]
 optional = true
