@@ -87,3 +87,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [0.0.27] - 2025-08-28
 - Updated external_tables.py to set allow_jagged_rows to true
+
+## [0.0.28] - 2025-12-16
+- upgrade Python requirement, hooks, and GitHub Actions
