@@ -11,7 +11,6 @@ import google.cloud.storage as storage
 from vestapol import external_tables
 from vestapol.destinations import base_destination
 
-
 if TYPE_CHECKING:
     from vestapol.web_resources.base_resource import BaseResource
 
