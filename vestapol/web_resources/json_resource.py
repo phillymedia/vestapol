@@ -30,6 +30,7 @@ class JSONResource(base_resource.BaseResource):
         query_params=None,
         request_headers=None,
         manual_schema=None,
+        ignore_unknown_values: Optional[bool] = False,
     ):
         self.name: str = name
         self.base_url: str = base_url
@@ -38,6 +39,7 @@ class JSONResource(base_resource.BaseResource):
         self.query_params: Optional[dict] = query_params
         self.request_headers: Optional[dict] = request_headers
         self.manual_schema: Optional[List[Dict]] = manual_schema
+        self.ignore_unknown_values: Optional[bool] = ignore_unknown_values
         super().__init__(
             self.name,
             self.base_url,
@@ -49,6 +51,7 @@ class JSONResource(base_resource.BaseResource):
             self.query_params,
             self.request_headers,
             self.manual_schema,
+            ignore_unknown_values=self.ignore_unknown_values,
         )
 
     def load(self, destination: BaseDestination):
