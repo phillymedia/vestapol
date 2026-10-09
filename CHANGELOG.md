@@ -90,3 +90,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [0.0.28] - 2025-12-16
 - upgrade Python requirement, hooks, and GitHub Actions
+
+## [0.0.29] - 2026-10-09
+
+### Added
+- Added an optional `ignore_unknown_values` parameter (default `False`) to `CSVResource` and `JSONResource`. When enabled, the BigQuery external table ignores columns in the source data that are not declared in the table schema instead of failing.
+
+### Changed
+- Bumped dev and lock file dependencies (pytest, black, python-dotenv, requests, urllib3, protobuf, and others).
