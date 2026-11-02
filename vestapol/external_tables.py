@@ -22,6 +22,7 @@ def get_external_data_configuration(
     allow_quoted_newlines: Optional[bool] = False,
     field_delimiter: Optional[str] = ",",
     allow_jagged_rows: Optional[bool] = True,
+    ignore_unknown_values: Optional[bool] = False,
 ):
 
     bq_source_format = {"jsonl": "NEWLINE_DELIMITED_JSON", "csv": "CSV"}[source_format]
@@ -41,6 +42,10 @@ def get_external_data_configuration(
     external_config.hive_partitioning = hive_partitioning_opts
 
     external_config.source_uris = source_uris
+
+    # allows the external table to ignore any columns present in the source
+    # data that are not declared in the table's schema, instead of failing
+    external_config.ignore_unknown_values = ignore_unknown_values
 
     if bq_source_format == "CSV":
         # skips mypy since Google does not give CSVOptions a signature
@@ -65,6 +70,7 @@ def create_gcp_table(
     allow_quoted_newlines: Optional[bool] = False,
     field_delimiter: Optional[str] = ",",
     allow_jagged_rows: Optional[bool] = True,
+    ignore_unknown_values: Optional[bool] = False,
 ):
 
     client = bigquery.Client()
@@ -83,6 +89,7 @@ def create_gcp_table(
         allow_quoted_newlines,
         field_delimiter,
         allow_jagged_rows,
+        ignore_unknown_values,
     )
 
     # Create a permanent table linked to the GCS file

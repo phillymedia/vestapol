@@ -33,6 +33,7 @@ class BaseResource(ABC):
         skip_leading_rows: int = 0,
         allow_quoted_newlines: Optional[bool] = False,
         field_delimiter: Optional[str] = ",",
+        ignore_unknown_values: Optional[bool] = False,
     ):
         self.name = name
         self.base_url = base_url
@@ -48,6 +49,7 @@ class BaseResource(ABC):
         self.skip_leading_rows = skip_leading_rows
         self.allow_quoted_newlines = allow_quoted_newlines
         self.field_delimiter = field_delimiter
+        self.ignore_unknown_values = ignore_unknown_values
 
     def load(self, destination: BaseDestination):
         """The main entry point method for Vestapol resources. This method

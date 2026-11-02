@@ -30,6 +30,7 @@ class CSVResource(base_resource.BaseResource):
         manual_schema: Optional[List[Dict]] = None,
         allow_quoted_newlines: Optional[bool] = False,
         field_delimiter: Optional[str] = ",",
+        ignore_unknown_values: Optional[bool] = False,
     ):
         self.name = name
         self.base_url = base_url
@@ -41,6 +42,7 @@ class CSVResource(base_resource.BaseResource):
         self.manual_schema = manual_schema
         self.allow_quoted_newlines = allow_quoted_newlines
         self.field_delimiter = field_delimiter
+        self.ignore_unknown_values = ignore_unknown_values
 
         super().__init__(
             self.name,
@@ -56,6 +58,7 @@ class CSVResource(base_resource.BaseResource):
             self.skip_leading_rows,
             self.allow_quoted_newlines,
             self.field_delimiter,
+            self.ignore_unknown_values,
         )
 
     def write_data(self, data, destination: BaseDestination):
